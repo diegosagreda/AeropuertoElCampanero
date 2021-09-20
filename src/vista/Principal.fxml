@@ -1,0 +1,1710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="670.0" prefWidth="1188.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="modelo.controladorPrincipal">
+   <children>
+      <ImageView fx:id="imagenPrincipal1" fitHeight="678.0" fitWidth="1194.0" layoutX="-4.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/fondoApp.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane fx:id="panel_reportesAerolienas" prefHeight="660.0" prefWidth="1194.0" style="-fx-background-color: transparent;" visible="false">
+         <children>
+            <AnchorPane prefHeight="671.0" prefWidth="226.0" style="-fx-background-color: #1d2d3b;">
+               <children>
+                  <Button fx:id="botonReportePiloto" alignment="BASELINE_LEFT" layoutX="1.0" layoutY="263.0" mnemonicParsing="false" onAction="#mostrarReportePilotosAeroliena" prefHeight="46.0" prefWidth="223.0" style="-fx-background-color: #2e4053;" text="Reporte Pilotos" textFill="DEEPSKYBLUE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_airplane_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="botonReporteAviones" alignment="BASELINE_LEFT" layoutX="4.0" layoutY="330.0" mnemonicParsing="false" onAction="#mostrarReporteAvionesAeroliena" prefHeight="46.0" prefWidth="213.0" style="-fx-background-color: null;" text="Reporte Aviones" textFill="DEEPSKYBLUE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_airplane_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="24.0" layoutY="565.0" mnemonicParsing="false" onAction="#salirPanelReportesAerolienas" prefHeight="46.0" prefWidth="174.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30;" text="Salir" textFill="DEEPSKYBLUE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_delete_30px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fitHeight="96.0" fitWidth="113.0" layoutX="63.0" layoutY="23.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/icons8_airplane_80px.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="81.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aerolinea">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane layoutX="214.0" prefHeight="671.0" prefWidth="978.0" style="-fx-background-color: #2e4053;">
+               <children>
+                  <AnchorPane fx:id="panelReportePilotosAeroliena" layoutX="25.0" layoutY="14.0" prefHeight="634.0" prefWidth="908.0" style="-fx-background-color: #1d2d3b;" visible="false">
+                     <children>
+                        <TableView fx:id="tabla_pilotosDeAerolinea" layoutX="24.0" layoutY="51.0" prefHeight="322.0" prefWidth="862.0">
+                          <columns>
+                            <TableColumn fx:id="columnIdPilotoAerolinea" prefWidth="75.0" text="ID PILOTO" />
+                            <TableColumn fx:id="columnNombrePilotoAerolinea" prefWidth="151.99996948242188" text="NOMBRE" />
+                              <TableColumn fx:id="columnApellidoPilotoAerolinea" prefWidth="182.39999389648438" text="APELLIDO" />
+                              <TableColumn fx:id="columnLicenciaPilotoAerolinea" prefWidth="136.0" text="LICENCIA" />
+                              <TableColumn fx:id="columnHrsVueloPilotoAerolinea" prefWidth="140.79998779296875" text="HORAS DE VUELO" />
+                              <TableColumn fx:id="columnRvsMedicaPilotoAerolinea" prefWidth="176.00006103515625" text="FECHA RVS_MEDICA" />
+                          </columns>
+                        </TableView>
+                        <Text fill="WHITE" layoutX="24.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pilotos">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="285.0" layoutY="386.0" mnemonicParsing="false" onAction="#nuevoPiloto" prefHeight="36.0" prefWidth="118.0" text="NUEVO">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_add_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button layoutX="457.0" layoutY="386.0" mnemonicParsing="false" onAction="#eliminarPiloto" prefHeight="38.0" prefWidth="130.0" text="ELIMINAR">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_delete_512px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Text fill="WHITE" layoutX="26.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id Piloto">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_idPilotoAerolienaModificar" layoutX="21.0" layoutY="508.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30; -fx-text-fill: white;" />
+                        <Text fill="WHITE" layoutX="182.0" layoutY="505.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_nombrePilotoAerolienaModificar" layoutX="182.0" layoutY="509.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30; -fx-text-fill: white;" />
+                        <Text fill="WHITE" layoutX="361.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_apellidoPilotoAerolienaModificar" layoutX="361.0" layoutY="508.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30; -fx-text-fill: white;" />
+                        <Text fill="WHITE" layoutX="555.0" layoutY="505.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Licencia">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_licenciaPilotoAerolienaModificar" layoutX="555.0" layoutY="509.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30; -fx-text-fill: white;" />
+                        <TextField fx:id="txt_hrsVueloPilotoAerolienaModificar" layoutX="746.0" layoutY="509.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30; -fx-text-fill: white;" />
+                        <Text fill="WHITE" layoutX="746.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horas Vuelo">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="369.0" layoutY="579.0" mnemonicParsing="false" onAction="#modificarPiloto" prefHeight="38.0" prefWidth="136.0" text="MODIFICAR">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="29.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_renew_128px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <DatePicker fx:id="date_rvsMedicaPiloto" layoutX="25.0" layoutY="586.0" style="-fx-background-color: null; -fx-border-radius: 30;" />
+                        <Text fill="WHITE" layoutX="23.0" layoutY="575.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha Rvs_Medica">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Separator layoutX="23.0" layoutY="461.0" prefHeight="3.0" prefWidth="862.0" />
+                        <Button layoutX="516.0" layoutY="579.0" mnemonicParsing="false" onAction="#limpiarCamposmodificarPiloto" prefHeight="38.0" prefWidth="43.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30;">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_broom_52px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="panelReporteAvionesAeroliena" layoutX="25.0" layoutY="14.0" prefHeight="634.0" prefWidth="908.0" style="-fx-background-color: #1d2d3b;">
+                     <children>
+                        <TableView fx:id="tabla_avionesAerolinea" layoutX="24.0" layoutY="51.0" prefHeight="322.0" prefWidth="862.0">
+                           <columns>
+                              <TableColumn fx:id="columnIdAvionAerolinea" prefWidth="98.39996337890625" text="ID AVION" />
+                              <TableColumn fx:id="columnModeloAvionAerolinea" prefWidth="133.5999755859375" text="MODELO" />
+                              <TableColumn fx:id="columnCapacidadAvionAerolinea" prefWidth="101.5999755859375" text="CAPACIDAD" />
+                              <TableColumn fx:id="columnTipoAvionAerolinea" prefWidth="116.0" text="TIPO" />
+                              <TableColumn fx:id="columnTipoPropulAvionAerolinea" prefWidth="162.4000244140625" text="TIPO PROPULSION" />
+                              <TableColumn fx:id="columnPesoAvionAerolinea" prefWidth="124.79998779296875" text="PESO NOMINAL" />
+                              <TableColumn fx:id="columnNumMotoresAvionAerolinea" prefWidth="125.5999755859375" text="NUMERO MOTORES" />
+                           </columns>
+                        </TableView>
+                        <Text fill="WHITE" layoutX="24.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aviones">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="295.0" layoutY="386.0" mnemonicParsing="false" onAction="#nuevoAvion" prefHeight="36.0" prefWidth="118.0" text="NUEVO">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_add_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button layoutX="447.0" layoutY="385.0" mnemonicParsing="false" onAction="#eliminarAvion" prefHeight="38.0" prefWidth="130.0" text="ELIMINAR">
+                           <font>
+                              <Font name="Arial Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_delete_512px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Text fill="WHITE" layoutX="26.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id Avion">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_idAvionModificar" layoutX="21.0" layoutY="510.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30; -fx-text-fill: white;" />
+                        <Text fill="WHITE" layoutX="197.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_modeloAvionModificar" layoutX="191.0" layoutY="510.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30; -fx-text-fill: white;" />
+                        <Text fill="WHITE" layoutX="374.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_capacidadAvionModificar" layoutX="369.0" layoutY="510.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30; -fx-text-fill: white;" />
+                        <Text fill="WHITE" layoutX="564.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peso nominal">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_pesoAvionModificar" layoutX="558.0" layoutY="510.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30; -fx-text-fill: white;" />
+                        <TextField fx:id="txt_motoresAvionModificar" layoutX="729.0" layoutY="510.0" prefHeight="27.0" prefWidth="130.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30; -fx-text-fill: white;" />
+                        <Text fill="WHITE" layoutX="735.0" layoutY="504.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero motores">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="382.0" layoutY="572.0" mnemonicParsing="false" onAction="#modificarAvion" prefHeight="38.0" prefWidth="130.0" text="MODIFICAR">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_renew_128px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Separator layoutX="23.0" layoutY="461.0" prefHeight="3.0" prefWidth="862.0" />
+                        <Text fill="WHITE" layoutX="191.0" layoutY="568.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Propulsion">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <ComboBox fx:id="cbx_propulsionAvionModificar" layoutX="181.0" layoutY="576.0" prefHeight="26.0" prefWidth="134.0" />
+                        <Text fill="WHITE" layoutX="34.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo ">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <ComboBox fx:id="cbx_tipoAvionModificar" layoutX="24.0" layoutY="578.0" prefHeight="26.0" prefWidth="134.0" />
+                        <Button layoutX="521.0" layoutY="569.0" mnemonicParsing="false" onAction="#LimpiarCamposmodificarAvion" prefHeight="43.0" prefWidth="39.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30;" text="Limpiar">
+                           <graphic>
+                              <ImageView fitHeight="27.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_broom_52px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panelPrincipalAdmin" layoutX="-4.0" layoutY="-2.0" prefHeight="671.0" prefWidth="1198.0" style="-fx-background-color: #141826;" visible="false">
+         <children>
+            <AnchorPane layoutX="14.0" layoutY="17.0" prefHeight="642.0" prefWidth="130.0" style="-fx-background-color: #2d3740; -fx-background-radius: 20;">
+               <children>
+                  <Label fx:id="lb_solicitudesRegistro" alignment="TOP_LEFT" layoutX="36.0" layoutY="276.0" prefHeight="24.0" prefWidth="56.0" text="Registro " textFill="WHITE">
+                     <font>
+                        <Font name="Yu Gothic Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lb_reportes" alignment="TOP_LEFT" layoutX="38.0" layoutY="115.0" prefHeight="24.0" prefWidth="58.0" text="Reportes" textFill="WHITE">
+                     <font>
+                        <Font name="Yu Gothic Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lb_adminHangares" alignment="TOP_LEFT" layoutX="21.0" layoutY="451.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="22.0" prefWidth="94.0" text="Administracion " textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="Yu Gothic Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btn_menuAdministracionHangaresAerolienas" layoutX="17.0" layoutY="342.0" mnemonicParsing="false" onAction="#menuAdministracionHangaresAerolienas" prefHeight="93.0" prefWidth="93.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 60; -fx-border-width: 2;" visible="false">
+                     <graphic>
+                        <ImageView fitHeight="48.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_hangar_240px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_menuSolicitudesDeRegistro" layoutX="17.0" layoutY="168.0" mnemonicParsing="false" onAction="#menuSolicitudesDeRegistro" prefHeight="93.0" prefWidth="93.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 60; -fx-border-width: 2;">
+                     <graphic>
+                        <ImageView fitHeight="43.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_petition_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_menuReportesAdministracion" layoutX="17.0" layoutY="14.0" mnemonicParsing="false" onAction="#menuReportesAdministracion" prefHeight="93.0" prefWidth="93.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 60; -fx-border-width: 2;">
+                     <graphic>
+                        <ImageView fitHeight="45.0" fitWidth="52.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_business_report_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <ImageView fx:id="imagenSolicitudNueva" fitHeight="26.0" fitWidth="26.0" layoutX="83.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                     <image>
+                        <Image url="@../imagenes/icons8_plus_26px.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lb_adminHangares1" alignment="TOP_LEFT" layoutX="36.0" layoutY="466.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="18.0" prefWidth="63.0" text="Hangares" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="Yu Gothic Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lb_solicitudesRegistro1" alignment="TOP_LEFT" layoutX="32.0" layoutY="291.0" prefHeight="18.0" prefWidth="71.0" text="Aerolineas" textFill="WHITE">
+                     <font>
+                        <Font name="Yu Gothic Light" size="14.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="btn_cerrarSesionAdministracion" layoutX="17.0" layoutY="514.0" mnemonicParsing="false" onAction="#cerrarSesion" prefHeight="93.0" prefWidth="94.0" style="-fx-background-color: null; -fx-background-radius: 50; -fx-border-radius: 50; -fx-border-color: white; -fx-border-width: 2;" text="Cerrar sesion" textFill="#efefef" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="panelSolicitudRegistros" layoutX="166.0" layoutY="27.0" opacity="0.9" prefHeight="626.0" prefWidth="1013.0" style="-fx-background-color: #2d3740;">
+               <children>
+                  <Button fx:id="btn_activar" layoutX="298.0" layoutY="318.0" mnemonicParsing="false" onAction="#activarUsuario" prefHeight="38.0" prefWidth="150.0" style="-fx-background-color: green;" text="Activar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <TableView fx:id="tabla_usuarios" layoutX="23.0" layoutY="14.0" prefHeight="274.0" prefWidth="967.0">
+                    <columns>
+                      <TableColumn fx:id="colnombre" prefWidth="147.19998168945312" text="Nombre Aerolinea" />
+                      <TableColumn fx:id="colId" prefWidth="112.800048828125" text="ID aerolinea" />
+                        <TableColumn fx:id="colemail" prefWidth="179.19998168945312" text="E-mail" />
+                        <TableColumn fx:id="colusuario" prefWidth="187.20001220703125" text="Usuario" />
+                        <TableColumn fx:id="colcontrasena" prefWidth="192.79998779296875" text="Contraseña" />
+                        <TableColumn fx:id="colestado" prefWidth="167.199951171875" text="Estado" />
+                    </columns>
+                  </TableView>
+                  <Button fx:id="btn_inactivar" layoutX="516.0" layoutY="318.0" mnemonicParsing="false" onAction="#desactivarUsuario" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: blue;" text="Desactivar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button layoutX="650.0" layoutY="318.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: red;" text="Eliminar" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <TextField fx:id="txt_idAerolineaActiDesacEliminar" layoutX="39.0" layoutY="505.0" promptText="ID AEROLINEA" />
+                  <Button layoutX="427.0" layoutY="551.0" mnemonicParsing="false" onAction="#crearAerolineaDesdeAdministracion" prefHeight="43.0" prefWidth="125.0" text="CREAR">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_add_96px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Text fill="WHITE" layoutX="40.0" layoutY="482.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id Aerolinea">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="219.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="403.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuario">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="588.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contraseña">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Text fill="WHITE" layoutX="772.0" layoutY="483.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <TextField fx:id="txt_nombreAerolineaActiDesacEliminar" layoutX="219.0" layoutY="505.0" />
+                  <TextField fx:id="txt_usuarioAerolineaActiDesacEliminar" layoutX="403.0" layoutY="505.0" />
+                  <TextField fx:id="txt_contraAerolineaActiDesacEliminar" layoutX="588.0" layoutY="505.0" />
+                  <TextField fx:id="txt_emailAerolineaActiDesacEliminar" layoutX="772.0" layoutY="505.0" />
+                  <Button layoutX="369.0" layoutY="551.0" mnemonicParsing="false" onAction="#limpiarCamposSolicitudesRegistro" prefHeight="43.0" prefWidth="44.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 50;">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_broom_52px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="40.0" layoutY="551.0" mnemonicParsing="false" onAction="#buscarAerolineaSolicitud" prefHeight="43.0" prefWidth="96.0" text="BUSCAR">
+                     <graphic>
+                        <ImageView fitHeight="29.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_checklist_128px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="panel_reportesAdministracion" layoutX="161.0" layoutY="17.0" prefHeight="630.0" prefWidth="978.0" style="-fx-background-color: #2d3740;" visible="false">
+               <children>
+                  <AnchorPane fx:id="panel_reporteAerolineas" layoutX="11.0" layoutY="79.0" prefHeight="538.0" prefWidth="967.0" style="-fx-background-color: #2d3740;" visible="false">
+                     <children>
+                        <Text fill="WHITE" layoutX="60.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Usuarios del sistema">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                        <TableView fx:id="tabla_aerolienasREgistradas" layoutX="60.0" layoutY="65.0" prefHeight="190.0" prefWidth="814.0">
+                          <columns>
+                              <TableColumn fx:id="columnaIDAeroAdmin" prefWidth="176.0" text="ID" />
+                            <TableColumn fx:id="columnaNombreAeroAdmin" prefWidth="176.0" text="NOMBRE" />
+                              <TableColumn fx:id="columnaUsuarioAeroAdmin" prefWidth="164.0" text="USUARIO" />
+                              <TableColumn fx:id="columnaContrasenaAeroAdmin" prefWidth="145.5999755859375" text="CONTRASEÑA" />
+                              <TableColumn fx:id="columnaRolAeroAdmin" prefWidth="145.5999755859375" text="ROL" />
+                          </columns>
+                        </TableView>
+                        <Label layoutX="87.0" layoutY="332.0" text="Id" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="280.0" layoutY="332.0" text="Nombre" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="697.0" layoutY="332.0" text="Contrasena" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="485.0" layoutY="332.0" text="Usuario" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="id_usuario_del_sistema" layoutX="87.0" layoutY="352.0" />
+                        <TextField fx:id="nombre_usuario_del_sistema" layoutX="280.0" layoutY="352.0" />
+                        <TextField fx:id="usuario_usuario_del_sistema" layoutX="485.0" layoutY="352.0" />
+                        <TextField fx:id="contrasena_usuario_del_sistema" layoutX="697.0" layoutY="352.0" />
+                        <Button layoutX="521.0" layoutY="437.0" mnemonicParsing="false" onAction="#eliminarUsuarioDelSistema" prefHeight="36.0" prefWidth="105.0" text="Eliminar" visible="false">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_delete_512px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button layoutX="388.0" layoutY="437.0" mnemonicParsing="false" onAction="#crearUsuarioAdministrador" prefHeight="36.0" prefWidth="105.0" text="Crear">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_add_96px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button layoutX="87.0" layoutY="388.0" mnemonicParsing="false" onAction="#buscarUsuarioDesdeAdministracion" prefHeight="36.0" prefWidth="105.0" text="Buscar">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_checklist_128px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button layoutX="334.0" layoutY="437.0" mnemonicParsing="false" onAction="#limpiarCamposReporteUsuarios" prefHeight="36.0" prefWidth="38.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 50;">
+                           <graphic>
+                              <ImageView fitHeight="24.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_broom_52px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="panel_reporteHangares" layoutX="13.0" layoutY="76.0" prefHeight="554.0" prefWidth="967.0" style="-fx-background-color: #2d3740;" visible="false">
+                     <children>
+                        <Text fill="WHITE" layoutX="412.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reporte Hangares">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Text>
+                        <CheckBox layoutX="134.0" layoutY="490.0" mnemonicParsing="false" text="Ocupados" textFill="WHITE" />
+                        <CheckBox layoutX="231.0" layoutY="490.0" mnemonicParsing="false" text="Vacios" textFill="WHITE" />
+                        <TableView fx:id="tabla_reportesHangar" layoutX="58.0" layoutY="85.0" prefHeight="391.0" prefWidth="849.0">
+                          <columns>
+                            <TableColumn fx:id="colum_codigoRH" prefWidth="126.40000915527344" text="Codigo" />
+                            <TableColumn fx:id="colum_UbicacionRH" prefWidth="160.0" text="Ubicacion" />
+                              <TableColumn fx:id="colum_capacidadRH" prefWidth="107.20001220703125" text="Capacidad" />
+                              <TableColumn fx:id="colum_estadoRH" prefWidth="127.20001220703125" text="Estado" />
+                              <TableColumn fx:id="colum_idAvionRH" prefWidth="181.60003662109375" text="Id Avion" />
+                              <TableColumn fx:id="colum_aerolineaRH" prefWidth="148.79986572265625" text="Aerolinea" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                  <Button layoutX="319.0" layoutY="12.0" mnemonicParsing="false" onAction="#mostrarPanelReporteFinanciero" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 20;" text="Reporte Financiero" textFill="WHITE" textOverrun="WORD_ELLIPSIS" visible="false">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_report_file_240px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="158.0" layoutY="12.0" mnemonicParsing="false" onAction="#mostrarPanelReporteHangares" prefHeight="34.0" prefWidth="150.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 20;" text="Reporte Hangares" textFill="WHITE" textOverrun="WORD_ELLIPSIS" visible="false">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_hangar_240px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="14.0" layoutY="12.0" mnemonicParsing="false" onAction="#mostrarPanelReporteVuelos" prefHeight="34.0" prefWidth="136.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 20;" text="Vuelos" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_airplane_128px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="550.0" layoutY="11.0" mnemonicParsing="false" onAction="#mostrarPanelReporteAviones" prefHeight="36.0" prefWidth="146.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 20;" text="Reporte Aviones" textFill="WHITE" textOverrun="WORD_ELLIPSIS" visible="false">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_airplane_take_off_200px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="273.0" layoutY="11.0" mnemonicParsing="false" onAction="#mostrarPanelReportePilotos" prefHeight="36.0" prefWidth="146.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 20;" text="Reporte Pilotos" textFill="WHITE" textOverrun="WORD_ELLIPSIS" visible="false">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_man_pilot_96px_1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#141826" height="16.0" layoutX="-3.0" layoutY="52.0" stroke="#141826" strokeType="INSIDE" width="988.0" />
+                  <Button layoutX="172.0" layoutY="11.0" mnemonicParsing="false" onAction="#mostrarPanelReporteAerolineas" prefHeight="36.0" prefWidth="155.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 20;" text="Usuarios del sistema" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
+                     <graphic>
+                        <ImageView fitHeight="19.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_address_book_52px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <AnchorPane fx:id="panelReporteVuelos" layoutX="5.0" layoutY="70.0" prefHeight="554.0" prefWidth="978.0" style="-fx-background-color: #2d3740;">
+                     <children>
+                        <DatePicker fx:id="fechaVueloFiltrarAdmin" layoutX="366.0" layoutY="508.0" prefHeight="26.0" prefWidth="143.0" promptText="Fecha" visible="false" />
+                        <ScrollPane hbarPolicy="NEVER" layoutX="-3.0" layoutY="66.0" prefHeight="391.0" prefWidth="978.0">
+                           <content>
+                              <VBox fx:id="vbox_contenedorVuelos" prefHeight="428.0" prefWidth="971.0" style="-fx-background-color: #2d3740;" />
+                           </content>
+                           <opaqueInsets>
+                              <Insets top="30.0" />
+                           </opaqueInsets>
+                        </ScrollPane>
+                        <Text fill="WHITE" layoutX="42.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Vuelo">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="397.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aerolinea">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="569.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="675.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="319.0" layoutY="32.0" strokeType="OUTSIDE" strokeWidth="0.0" text="AGENDA DE OPERACIONES">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="764.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Vuelo">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="488.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID Avion">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="id_vueloFiltrarAdmin" layoutX="24.0" layoutY="508.0" promptText="Id Vuelo" visible="false" />
+                        <TextField fx:id="aerolineaFiltrarAdmin" layoutX="192.0" layoutY="508.0" promptText="Aerolinea" visible="false" />
+                        <Button layoutX="592.0" layoutY="508.0" mnemonicParsing="false" onAction="#filtrarVuelos" text="Filtrar" visible="false" />
+                        <Button layoutX="517.0" layoutY="505.0" mnemonicParsing="false" onAction="#limpiarCamposDeFiltro" prefHeight="26.0" prefWidth="36.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30;" visible="false">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_broom_52px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button layoutX="729.0" layoutY="508.0" mnemonicParsing="false" onAction="#mostrarTodosLosVuleos" text="Mostrar Todos" visible="false" />
+                        <Text fill="WHITE" layoutX="873.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Estado">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="848.0" layoutY="508.0" mnemonicParsing="false" onAction="#cancelarVueloDesdeAdministracion" text="Cancelar vuelo" visible="false" />
+                        <Text fill="WHITE" layoutX="141.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Destino">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="279.0" layoutY="59.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Procedencia">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="panel_reporteFinaciero" layoutX="8.0" layoutY="70.0" prefHeight="554.0" prefWidth="967.0" style="-fx-background-color: #2d3740;" visible="false">
+                     <children>
+                        <Text fill="WHITE" layoutX="24.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ReporteFinaciero">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="panel_reportePIlotos" layoutX="20.0" layoutY="79.0" prefHeight="538.0" prefWidth="954.0" style="-fx-background-color: #2d3740;" visible="false">
+                     <children>
+                        <TableView fx:id="tabla_pilotosRegistrados" layoutX="251.0" layoutY="34.0" prefHeight="478.0" prefWidth="506.0">
+                          <columns>
+                            <TableColumn fx:id="columIdPilotoAdmin" prefWidth="155.20001220703125" text="ID PILOTO" />
+                            <TableColumn fx:id="columNombrePilotoAdmin" prefWidth="196.0" text="NOMBRE" />
+                              <TableColumn fx:id="columAerolineaPilotoAdmin" prefWidth="173.60001220703123" text="AEROLINEA" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="panel_reporteAviones" layoutX="11.0" layoutY="79.0" prefHeight="538.0" prefWidth="954.0" style="-fx-background-color: #2d3740;" visible="false">
+                     <children>
+                        <TableView fx:id="tabla_avionesRegistrados" layoutX="228.0" layoutY="18.0" prefHeight="502.0" prefWidth="526.0">
+                          <columns>
+                            <TableColumn fx:id="columnaIDAvionAdmin" prefWidth="109.60003662109375" text="ID AVION" />
+                            <TableColumn fx:id="columnaTipoAvionAdmin" prefWidth="107.199951171875" text="TIPO" />
+                              <TableColumn fx:id="columnaModeloAvionAdmin" prefWidth="145.60003662109375" text="MODELO" />
+                              <TableColumn fx:id="columnaAerolineaAvionAdmin" prefWidth="165.60003662109375" text="AEROLINEA" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="panel_administracionHangares" layoutX="164.0" layoutY="17.0" prefHeight="642.0" prefWidth="988.0" style="-fx-background-color: #2d3740;" visible="false">
+               <children>
+                  <Button layoutX="24.0" layoutY="14.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="210.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 20;" text="Registrar Hangar" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_hangar_240px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="524.0" layoutY="14.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="203.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 20;" text="Registro de salida" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_exit_52px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="275.0" layoutY="14.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="206.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 20;" text="Registro  de ingreso" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_form_128px_1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="759.0" layoutY="14.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="194.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 20;" text="Solicitudes de reserva" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="26.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_petition_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#141826" height="16.0" layoutY="62.0" stroke="#141826" strokeType="INSIDE" width="990.0" />
+                  <AnchorPane fx:id="panel_registrarHangar" layoutY="75.0" prefHeight="574.0" prefWidth="990.0" style="-fx-background-color: #141826;">
+                     <children>
+                        <ImageView fitHeight="526.0" fitWidth="785.0" layoutX="97.0" layoutY="15.0" opacity="0.2" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/hangar-81779_1920.jpg" />
+                           </image>
+                        </ImageView>
+                        <Text fill="WHITE" layoutX="372.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_codigoHangar" layoutX="372.0" layoutY="122.0" prefHeight="26.0" prefWidth="214.0" />
+                        <Text fill="WHITE" layoutX="372.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ubicacion">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_ubicacionHangar" layoutX="372.0" layoutY="209.0" prefHeight="26.0" prefWidth="214.0" />
+                        <Text fill="WHITE" layoutX="372.0" layoutY="292.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_capacidadHangar" layoutX="372.0" layoutY="304.0" prefHeight="26.0" prefWidth="214.0" />
+                        <Button layoutX="404.0" layoutY="401.0" mnemonicParsing="false" onAction="#registrarHangar" prefHeight="38.0" prefWidth="150.0" style="-fx-background-color: null; -fx-border-color: white;" text="Registrar Hangar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <Rectangle fx:id="cursor_pnPrinciAdmin" arcHeight="5.0" arcWidth="7.0" fill="#2fa71c" height="74.0" layoutX="144.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" width="8.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panelLogin" layoutX="818.0" layoutY="45.0" opacity="0.9" prefHeight="574.0" prefWidth="356.0" style="-fx-background-color: #1d2d3b; -fx-opacity: 0.9; -fx-border-color: white; -fx-border-width: 0.7; -fx-border-radius: 20; -fx-background-radius: 20;">
+         <children>
+            <ImageView fitHeight="119.0" fitWidth="114.0" layoutX="121.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/icons8_user_100px.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="70.0" layoutY="151.0" text="Organizacion" textFill="#fffdfd">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets left="5.0" />
+               </opaqueInsets>
+            </Label>
+            <Label layoutX="70.0" layoutY="309.0" text="Contraseña" textFill="#fffdfd">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="69.0" layoutY="233.0" text="Usuario" textFill="#fffdfd">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_usuario" layoutX="69.0" layoutY="257.0" prefHeight="27.0" prefWidth="235.0" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-border-radius: 30; -fx-background-radius: 30; -fx-text-fill: white;" />
+            <PasswordField fx:id="txt_contrasena" layoutX="69.0" layoutY="337.0" prefHeight="27.0" prefWidth="235.0" style="-fx-background-color: #1d2d3b; -fx-background-radius: 30; -fx-border-radius: 30; -fx-border-color: white; -fx-text-fill: white;" />
+            <Button layoutX="74.0" layoutY="412.0" mnemonicParsing="false" onAction="#ingresar" prefHeight="36.0" prefWidth="223.0" style="-fx-background-color: #DEE0E3; -fx-border-color: white;" text="Ingresar" textFill="#0d0d66">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Label layoutX="156.0" layoutY="481.0" onMouseClicked="#registrar" text="Registrarse" textFill="#fffdfd" underline="true" visible="false">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="29.0" fitWidth="29.0" layoutX="32.0" layoutY="253.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/icons8_user_32px.png" />
+               </image>
+            </ImageView>
+            <ImageView cache="true" cacheHint="SPEED" fitHeight="36.0" fitWidth="22.0" layoutX="36.0" layoutY="339.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/icons8_remove_key_50px.png" />
+               </image>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color green="0.5166666507720947" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </ImageView>
+            <ImageView fitHeight="29.0" fitWidth="47.0" layoutX="33.0" layoutY="178.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/icons8_organization_30px.png" />
+               </image>
+            </ImageView>
+            <ComboBox fx:id="cbx_orgaizacion" layoutX="69.0" layoutY="179.0" prefHeight="26.0" prefWidth="235.0" style="-fx-border-color: white; -fx-background-radius: 30; -fx-border-radius: 30; -fx-text-fill: white;" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panelRegistro" layoutX="51.0" layoutY="22.0" prefHeight="619.0" prefWidth="679.0" style="-fx-background-color: #1d2d3b;" visible="false">
+         <children>
+            <ImageView fitHeight="434.0" fitWidth="498.0" layoutX="122.0" layoutY="73.0" opacity="0.06" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/nombre.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="99.0" fitWidth="261.0" layoutX="580.0" layoutY="497.0" opacity="0.17" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/icons8_new_company_100px.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="97.0" layoutY="97.0" text="Nombre Aerolinea" textFill="#fff9f9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="397.0" layoutY="97.0" text="ID aerolinea" textFill="#fff9f9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="93.0" layoutY="202.0" text="E-mail" textFill="#fff9f9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="397.0" layoutY="202.0" text="Nombre de Usuario" textFill="#fff9f9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txt_nombreAeroliena" layoutX="95.0" layoutY="127.0" prefHeight="26.0" prefWidth="206.0" />
+            <TextField fx:id="txt_idAerolinea" layoutX="397.0" layoutY="127.0" prefHeight="26.0" prefWidth="206.0" />
+            <TextField fx:id="txt_emailAerolinea" layoutX="93.0" layoutY="226.0" prefHeight="26.0" prefWidth="206.0" />
+            <TextField fx:id="txt_usuarAerolinea" layoutX="397.0" layoutY="226.0" prefHeight="26.0" prefWidth="206.0" />
+            <Label layoutX="97.0" layoutY="305.0" text="Contraseña" textFill="#fff9f9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label layoutX="397.0" layoutY="305.0" text="Confirmar contraseña" textFill="#fff9f9">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Button fx:id="enviarSolicitud" layoutX="101.0" layoutY="517.0" mnemonicParsing="false" onAction="#enviarSolicitud" prefHeight="36.0" prefWidth="194.0" style="-fx-background-color: #445DA5;" text="Enviar solicitud " textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <ImageView fitHeight="26.0" fitWidth="39.0" layoutX="62.0" layoutY="127.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/icons8_name_64px.png" />
+               </image>
+            </ImageView>
+            <PasswordField fx:id="txt_contra1Aerolinea" layoutX="93.0" layoutY="334.0" prefHeight="26.0" prefWidth="206.0" />
+            <PasswordField fx:id="txt_contra2Aerolinea" layoutX="397.0" layoutY="334.0" prefHeight="26.0" prefWidth="206.0" />
+            <Label fx:id="lb_errorNombre" layoutX="92.0" layoutY="153.0" text="*campo obligatorio" textFill="RED" visible="false" />
+            <Label fx:id="lb_errorContra2" layoutX="396.0" layoutY="250.0" text="*campo obligatorio" textFill="RED" visible="false" />
+            <Label fx:id="lb_errorContra1" layoutX="92.0" layoutY="363.0" text="*campo obligatorio" textFill="RED" visible="false" />
+            <Label fx:id="lb_errorUsuario" layoutX="92.0" layoutY="250.0" text="*campo obligatorio" textFill="RED" visible="false" />
+            <Label fx:id="lb_errorEmail" layoutX="396.0" layoutY="153.0" text="*campo obligatorio" textFill="RED" visible="false" />
+            <Label fx:id="lb_errorID" layoutX="396.0" layoutY="363.0" text="*campo obligatorio" textFill="RED" visible="false" />
+            <Label fx:id="lb_errorContrasDiferentes" layoutX="400.0" layoutY="381.0" text="Las contraseñas no coinciden" textFill="RED" visible="false" />
+            <Button fx:id="btn_cancelFormuRegistroAero" layoutX="389.0" layoutY="517.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="163.0" style="-fx-background-color: #B6081B;" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Separator layoutX="96.0" layoutY="417.0" prefWidth="200.0" />
+            <Separator layoutX="400.0" layoutY="415.0" prefWidth="200.0" />
+            <ImageView fitHeight="27.0" fitWidth="22.0" layoutX="64.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/icons8_mail_50px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="368.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/icons8_name_64px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="368.0" layoutY="126.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/icons8_sort_by_modified_date_30px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="62.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/icons8_key_24px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="370.0" layoutY="336.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/icons8_key_24px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="521.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/icons8_delete_30px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="20.0" fitWidth="22.0" layoutX="267.0" layoutY="525.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/icons8_ok_24px.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="85.0" layoutY="38.0" text="Formulario de registro" textFill="#fff9f9">
+               <font>
+                  <Font name="Yu Gothic Light" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panelPrincipalAerolineas" layoutX="-1.0" layoutY="-1.0" opacity="0.9" prefHeight="671.0" prefWidth="1194.0" style="-fx-background-color: #1d2d3b;" visible="false">
+         <children>
+            <Pane fx:id="panelBtnRegistrarAvion" layoutX="721.0" layoutY="215.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
+               <children>
+                  <Button fx:id="btn_registrarAvion" layoutX="29.0" layoutY="23.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 100; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
+                     <graphic>
+                        <ImageView fitHeight="68.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_airport_200px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="1.0" layoutY="154.0" text="Registrar Aviones" textFill="WHITE">
+                     <font>
+                        <Font name="Yu Gothic Light" size="24.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <Pane fx:id="panelBtnRegistrarPiloto" layoutX="237.0" layoutY="212.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
+               <children>
+                  <Button fx:id="btn_registrarPiloto" layoutX="29.0" layoutY="22.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 50; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
+                     <graphic>
+                        <ImageView fitHeight="75.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_air_pilot_hat_200px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="4.0" layoutY="144.0" prefHeight="43.0" prefWidth="173.0" text="Registrar Pilotos" textFill="WHITE">
+                     <font>
+                        <Font name="Yu Gothic Light" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="panelBtnVuelos" layoutX="484.0" layoutY="212.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
+               <children>
+                  <Button fx:id="btn_vuelosMenuAerolineas" layoutX="29.0" layoutY="14.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 100; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
+                     <graphic>
+                        <ImageView fitHeight="61.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_address_book_60px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="55.0" layoutY="146.0" text="Vuelos" textFill="WHITE">
+                     <font>
+                        <Font name="Yu Gothic Light" size="24.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <Pane fx:id="panelBtnHangares" layoutX="761.0" layoutY="136.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;" visible="false">
+               <children>
+                  <Button fx:id="btn_HangaresMenuAerolineas" layoutX="29.0" layoutY="14.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 100; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
+                     <graphic>
+                        <ImageView fitHeight="66.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_hangar_240px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="41.0" layoutY="144.0" text="Hangares" textFill="#fffdfd">
+                     <font>
+                        <Font name="Yu Gothic Light" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="panelBtnPagoSeguro" layoutX="761.0" layoutY="358.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;" visible="false">
+               <children>
+                  <Button fx:id="btn_pagosMenuAerolineas" layoutX="29.0" layoutY="20.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 100; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
+                     <graphic>
+                        <ImageView fitHeight="69.0" fitWidth="63.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_pay_60px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="19.0" layoutY="146.0" text="Pagos Seguro" textFill="WHITE">
+                     <font>
+                        <Font name="Yu Gothic Light" size="24.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <Pane fx:id="panelBtnReportes" layoutX="624.0" layoutY="355.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;" visible="false">
+               <children>
+                  <Button fx:id="btn_reportesMenuAerolineas" layoutX="29.0" layoutY="21.0" mnemonicParsing="false" onAction="#mostrarMenuReportesAerolienas" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 100; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
+                     <graphic>
+                        <ImageView fitHeight="57.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_business_report_48px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="44.0" layoutY="146.0" text="Reportes" textFill="WHITE">
+                     <font>
+                        <Font name="Yu Gothic Light" size="24.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
+            <Text fx:id="text_nombreAerolinea" fill="#fff200" layoutX="957.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="---------------------" wrappingWidth="125.4189453125" y="5.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Button fx:id="btn_cerrarSesionPanePrinciAero" layoutX="1083.0" layoutY="12.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="94.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 20;" text="Cerrar Sesion" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Button>
+            <Separator layoutX="447.0" layoutY="211.0" orientation="VERTICAL" prefHeight="190.0" prefWidth="0.0" />
+            <Separator layoutX="721.0" layoutY="132.0" orientation="VERTICAL" prefHeight="418.0" prefWidth="0.0" visible="false" />
+            <ImageView fitHeight="22.0" fitWidth="26.0" layoutX="1091.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../imagenes/icons8_settings_100px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="1054.0" layoutY="4.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../imagenes/icons8_ask_question_60px.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="26.0" fitWidth="22.0" layoutX="1020.0" layoutY="6.0" onMousePressed="#mostrarNotificaciones" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../imagenes/icons8_notification_48px.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="871.0" layoutY="15.0" text="Aerolinea" textFill="WHITE">
+               <font>
+                  <Font name="Yu Gothic Light" size="20.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="notificacionesAeroliena" layoutX="692.0" layoutY="419.0" prefHeight="238.0" prefWidth="438.0" style="-fx-background-color: #444853;" visible="false">
+               <children>
+                  <Text fill="WHITE" layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notificaciones">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Text>
+                  <ScrollPane hbarPolicy="NEVER" layoutX="2.0" layoutY="31.0" prefHeight="182.0" prefWidth="434.0">
+                     <content>
+                        <VBox fx:id="panel_notificacionesAerolinea" prefHeight="176.0" prefWidth="430.0" spacing="3.0" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panel_welcome" layoutX="25.0" layoutY="62.0" opacity="0.9" prefHeight="514.0" prefWidth="765.0" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-border-width: 0.5; -fx-border-radius: 20; -fx-background-radius: 20;">
+         <children>
+            <ImageView fitHeight="468.0" fitWidth="573.0" layoutX="180.0" layoutY="17.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/nombre.png" />
+               </image>
+            </ImageView>
+            <Text fill="#fffcfc" layoutX="83.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido a" wrappingWidth="424.7999664306642">
+               <font>
+                  <Font name="Agency FB Bold" size="83.0" />
+               </font>
+               <effect>
+                  <DropShadow blurType="TWO_PASS_BOX" height="255.0" radius="127.0" width="255.0">
+                     <color>
+                        <Color red="1.1102230246251565E-16" green="0.4000000059604645" blue="1.0" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Text>
+            <Text fill="#fffcfc" layoutX="83.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aeropuerto el Campanero" wrappingWidth="619.2">
+               <font>
+                  <Font name="Agency FB" size="71.0" />
+               </font>
+               <effect>
+                  <DropShadow>
+                     <color>
+                        <Color red="0.4364132583141327" green="0.6105263233184814" blue="0.5553905367851257" />
+                     </color>
+                  </DropShadow>
+               </effect>
+            </Text>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panelFormularioPiloto" layoutX="243.0" layoutY="100.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="478.0" prefWidth="706.0" style="-fx-background-color: #393C47; -fx-background-radius: 10;" visible="false">
+         <children>
+            <ImageView fitHeight="478.0" fitWidth="484.0" layoutX="124.0" opacity="0.07" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/nombre.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="440.0" layoutY="362.0" mnemonicParsing="false" onAction="#cancelarFormularioPiloto" prefHeight="34.0" prefWidth="121.0" style="-fx-background-color: #8D3116;" text="Cancelar" textFill="WHITE" />
+            <Button fx:id="btn_regisFormu" layoutX="170.0" layoutY="362.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="122.0" text="Registrar" />
+            <Text fill="WHITE" layoutX="127.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FORMULARIO REGISTRO PILOTO">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="127.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Cedula">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="123.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha revision medica">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="399.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="127.0" layoutY="116.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombres">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="399.0" layoutY="201.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horas de vuelo">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txt_nomFormuPlito" layoutX="127.0" layoutY="131.0" prefHeight="26.0" prefWidth="203.0" />
+            <TextField fx:id="txt_apellFormuPlito" layoutX="399.0" layoutY="131.0" prefHeight="26.0" prefWidth="203.0" />
+            <Text fill="WHITE" layoutX="399.0" layoutY="286.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Licencia">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txt_ceduFormuPlito" layoutX="127.0" layoutY="212.0" prefHeight="26.0" prefWidth="203.0" />
+            <TextField fx:id="txt_hrsVueFormuPlito" layoutX="399.0" layoutY="212.0" prefHeight="26.0" prefWidth="203.0" />
+            <TextField fx:id="txt_licenFormuPlito" layoutX="399.0" layoutY="298.0" prefHeight="26.0" prefWidth="203.0" />
+            <DatePicker fx:id="txt_revisMedicaFormuPlito" layoutX="124.0" layoutY="298.0" prefHeight="26.0" prefWidth="210.0" />
+            <Text fx:id="errorNombre" fill="RED" layoutX="124.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Campo obligatorio" visible="false" />
+            <Text fx:id="errorApellidos" fill="RED" layoutX="401.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Campo obligatorio" visible="false" />
+            <Text fx:id="errorCedula" fill="RED" layoutX="124.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Campo obligatorio" visible="false" />
+            <Text fx:id="errorHorasVuelo" fill="RED" layoutX="401.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Campo obligatorio" visible="false" />
+            <Text fx:id="errorRevisionMedico" fill="RED" layoutX="124.0" layoutY="334.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Campo obligatorio" visible="false" />
+            <Text fx:id="errorLicencia" fill="RED" layoutX="401.0" layoutY="335.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Campo obligatorio" visible="false" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panelFormularioAvion" layoutX="248.0" layoutY="85.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="468.0" prefWidth="690.0" style="-fx-background-color: #393C47; -fx-background-radius: 10;" visible="false">
+         <children>
+            <ImageView fitHeight="514.0" fitWidth="464.0" layoutX="123.0" layoutY="4.0" opacity="0.07" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/nombre.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btn_cancelarFormuAvion" layoutX="418.0" layoutY="378.0" mnemonicParsing="false" onAction="#cancelarFormularioAvion" prefHeight="34.0" prefWidth="121.0" style="-fx-background-color: #8D3116;" text="Cancelar" textFill="WHITE" />
+            <Button fx:id="btn_registrarFormuAvion" layoutX="418.0" layoutY="325.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="122.0" text="Registrar" />
+            <Text fill="WHITE" layoutX="110.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FORMULARIO REGISTRO AVION">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="114.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacidad">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="110.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Peso nominal">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="323.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="114.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id avion">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="393.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de proulsion">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txt_idAvion" layoutX="114.0" layoutY="106.0" prefHeight="26.0" prefWidth="203.0" />
+            <TextField fx:id="txt_pesoNominalAvion" layoutX="114.0" layoutY="272.0" prefHeight="26.0" prefWidth="203.0" />
+            <Text fill="WHITE" layoutX="399.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero de motores">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txt_capacidadAvion" layoutX="114.0" layoutY="187.0" prefHeight="26.0" prefWidth="203.0" />
+            <Text fx:id="errorNombre1" fill="RED" layoutX="114.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Campo obligatorio" visible="false" />
+            <Text fx:id="errorApellidos1" fill="RED" layoutX="391.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Campo obligatorio" visible="false" />
+            <Text fx:id="errorCedula1" fill="RED" layoutX="114.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Campo obligatorio" visible="false" />
+            <Text fx:id="errorHorasVuelo1" fill="RED" layoutX="391.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Campo obligatorio" visible="false" />
+            <Text fx:id="errorRevisionMedico1" fill="RED" layoutX="114.0" layoutY="309.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Campo obligatorio" visible="false" />
+            <Text fx:id="errorLicencia1" fill="RED" layoutX="391.0" layoutY="310.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Campo obligatorio" visible="false" />
+            <Text fill="WHITE" layoutX="138.0" layoutY="357.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <RadioButton fx:id="radio_cargaAvion" layoutX="201.0" layoutY="333.0" mnemonicParsing="false" text="Carga" textFill="WHITE" />
+            <RadioButton fx:id="radio_pasajerosAvion" layoutX="201.0" layoutY="360.0" mnemonicParsing="false" text="Pasajeros" textFill="WHITE" />
+            <ComboBox fx:id="cbx_tipoPropulsionAvion" layoutX="392.0" layoutY="187.0" prefHeight="26.0" prefWidth="186.0" />
+            <ComboBox fx:id="cbx_numMotoresAvion" layoutX="392.0" layoutY="272.0" prefHeight="26.0" prefWidth="186.0" />
+            <Text fill="WHITE" layoutX="399.0" layoutY="90.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modelo">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Text>
+            <TextField fx:id="txt_modeloAvion" layoutX="394.0" layoutY="106.0" prefHeight="26.0" prefWidth="186.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panel_vuelosAerolineas" layoutX="-5.0" layoutY="-2.0" prefHeight="684.0" prefWidth="1203.0" style="-fx-background-color: transparent;" visible="false">
+         <children>
+            <AnchorPane layoutY="1.0" prefHeight="671.0" prefWidth="206.0" style="-fx-background-color: #1d2d3b;">
+               <children>
+                  <Button fx:id="boton_agendar" alignment="BASELINE_LEFT" layoutX="12.0" layoutY="243.0" mnemonicParsing="false" onAction="#agendarVuelo" prefHeight="46.0" prefWidth="190.0" style="-fx-background-color: #2e4053;" text="Agendar" textFill="DEEPSKYBLUE">
+                     <font>
+                        <Font name="Arial Black" size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_airplane_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="boton_reprogramar" alignment="BASELINE_LEFT" layoutX="14.0" layoutY="310.0" mnemonicParsing="false" onAction="#reprogramarVuelo" prefHeight="46.0" prefWidth="190.0" style="-fx-background-color: null;" text="Reprogramar" textFill="DEEPSKYBLUE" visible="false">
+                     <font>
+                        <Font name="Arial Black" size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_airplane_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button fx:id="boton_programados" alignment="BASELINE_LEFT" layoutX="12.0" layoutY="374.0" mnemonicParsing="false" onAction="#mostrarVuelosProgramados" prefHeight="46.0" prefWidth="193.0" style="-fx-background-color: null;" text="Programados" textFill="DEEPSKYBLUE" visible="false">
+                     <font>
+                        <Font name="Arial Black" size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="31.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_airplane_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <Button layoutX="29.0" layoutY="597.0" mnemonicParsing="false" onAction="#salirPanelVuelosAerolineas" prefHeight="46.0" prefWidth="142.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30;" text="Salir" textFill="DEEPSKYBLUE">
+                     <font>
+                        <Font name="Arial Black" size="14.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_delete_30px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic></Button>
+                  <ImageView fitHeight="96.0" fitWidth="93.0" layoutX="61.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/icons8_airplane_80px.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="76.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aerolinea" wrappingWidth="63.19999999999993">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="panel_agendarVuelo" layoutX="194.0" layoutY="3.0" prefHeight="671.0" prefWidth="1003.0" style="-fx-background-color: #2e4053;">
+               <children>
+                  <AnchorPane fx:id="panel_formularioAgendarVuelo" disable="true" layoutX="278.0" prefHeight="650.0" prefWidth="679.0" style="-fx-background-color: #1d2d3b; -fx-background-radius: 30; -fx-border-radius: 30;">
+                     <children>
+                        <Button layoutX="162.0" layoutY="577.0" mnemonicParsing="false" onAction="#agendarVueloEnBaseDatos" prefHeight="45.0" prefWidth="155.0" style="-fx-background-color: #16A31A;" text="Agendar Vuelo" textFill="WHITE" />
+                        <Separator layoutX="61.0" layoutY="133.0" prefHeight="3.0" prefWidth="602.0" />
+                        <Separator layoutX="61.0" layoutY="277.0" prefHeight="3.0" prefWidth="602.0" />
+                        <Separator layoutX="64.0" layoutY="423.0" prefHeight="3.0" prefWidth="602.0" />
+                        <Text fill="#2db942" layoutX="469.0" layoutY="151.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INFORMACION AVION">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#2db942" layoutX="467.0" layoutY="295.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INFORMACION PILOTO">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="#2db942" layoutX="457.0" layoutY="438.0" strokeType="OUTSIDE" strokeWidth="0.0" text="INFORMACION COPILOTO">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="67.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo de Vuelo">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="432.0" layoutY="576.0" mnemonicParsing="false" onAction="#salirPanelFormularioVuelo" prefHeight="46.0" prefWidth="148.0" style="-fx-background-color: #E01026;" text="Salir" textFill="WHITE" />
+                        <Text fill="WHITE" layoutX="476.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_tipoEncontrado" editable="false" layoutX="517.0" layoutY="222.0" prefHeight="26.0" prefWidth="106.0" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-text-fill: white;" />
+                        <Text fill="WHITE" layoutX="381.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Numero de motores">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_numMotoresEncontrado" editable="false" layoutX="518.0" layoutY="181.0" prefHeight="27.0" prefWidth="105.0" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-text-fill: white;" />
+                        <Text fill="WHITE" layoutX="421.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre piloto">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_PilotoEncontrado" editable="false" layoutX="418.0" layoutY="348.0" prefHeight="22.0" prefWidth="199.0" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-text-fill: white;" />
+                        <Text fill="WHITE" layoutX="414.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre copiloto">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_CoPilotoEncontrado" editable="false" layoutX="418.0" layoutY="498.0" prefHeight="22.0" prefWidth="199.0" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-text-fill: white;" />
+                        <TextField fx:id="txt_idAvionBuscar" layoutX="67.0" layoutY="194.0" prefHeight="27.0" prefWidth="142.0" promptText="Ingresa Id Avion" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-text-fill: white;" />
+                        <TextField fx:id="txt_idPilotoBuscar" layoutX="67.0" layoutY="348.0" prefHeight="27.0" prefWidth="142.0" promptText="Ingresa Id Piloto" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-text-fill: white;" />
+                        <TextField fx:id="txt_idCopilotoBuscar" layoutX="67.0" layoutY="498.0" prefHeight="27.0" prefWidth="142.0" promptText="Ingresa Id Copiloto" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-text-fill: white;" />
+                        <Button fx:id="btn_buscarIDPiloto" layoutX="219.0" layoutY="349.0" mnemonicParsing="false" onAction="#buscarIdPlilotoVuelo" text="Registrar" />
+                        <Button fx:id="btn_buscarIDAvion" layoutX="219.0" layoutY="195.0" mnemonicParsing="false" onAction="#buscarIdAvionVuelo" text="Registrar" />
+                        <Button fx:id="btn_buscarIDCopiloto" layoutX="222.0" layoutY="499.0" mnemonicParsing="false" onAction="#buscarIdCoplilotoVuelo" text="Registrar" />
+                        <RadioButton fx:id="radio_llegada" layoutX="177.0" layoutY="57.0" mnemonicParsing="false" onAction="#esVueloDeLlegada" text="Llegada" textFill="WHITE" />
+                        <RadioButton fx:id="radio_salida" layoutX="177.0" layoutY="86.0" mnemonicParsing="false" onAction="#esVueloDeSalida" text="Salida" textFill="WHITE" />
+                        <Text fx:id="error_idVuelo" fill="RED" layoutX="61.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Campo obligatorio" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="error_NoCopiloto" fill="RED" layoutX="53.0" layoutY="539.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*No has seleccionado un copiloto" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="error_NoPiloto" fill="RED" layoutX="60.0" layoutY="402.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*No has seleccionado un piloto" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="error_NoAvion" fill="RED" layoutX="61.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*No has seleccionado un avion" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="error_NoTipo" fill="RED" layoutX="60.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*No has seleccionado el tipo de vuelo" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="20.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FORMULARIO AGENDAR VUELO">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Text>
+                        <Button layoutX="295.0" layoutY="193.0" mnemonicParsing="false" onAction="#limpiarInformacionAvion" prefHeight="19.0" prefWidth="43.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 15;">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_broom_52px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button layoutX="295.0" layoutY="497.0" mnemonicParsing="false" onAction="#limpiarInformacionCopiloto" prefHeight="19.0" prefWidth="43.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 15;">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_broom_52px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button layoutX="295.0" layoutY="347.0" mnemonicParsing="false" onAction="#limpiarInformacionPiloto" prefHeight="19.0" prefWidth="43.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 15;">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../imagenes/icons8_broom_52px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Text fill="WHITE" layoutX="393.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Destino">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_destinoVuelo" editable="false" layoutX="462.0" layoutY="42.0" prefHeight="27.0" prefWidth="176.0" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-text-fill: white;" />
+                        <Text fill="WHITE" layoutX="368.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Procedencia">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_procedenciaVuelo" editable="false" layoutX="462.0" layoutY="80.0" prefHeight="27.0" prefWidth="176.0" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-text-fill: white;" />
+                        <Text fx:id="error_NoDestino" fill="RED" layoutX="403.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*No has seleccionado un destino" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="error_NoProcedencia" fill="RED" layoutX="405.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*No has seleccionado una procedencia" visible="false">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="panel_consultarDisponibilidad" layoutX="21.0" layoutY="125.0" prefHeight="364.0" prefWidth="248.0" style="-fx-background-color: #1d2d3b; -fx-background-radius: 30;">
+                     <children>
+                        <Text fill="WHITE" layoutX="41.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <DatePicker fx:id="txt_fechaVuelo" layoutX="41.0" layoutY="90.0" prefHeight="26.0" prefWidth="176.0" />
+                        <Text fill="WHITE" layoutX="43.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Text>
+                        <ComboBox fx:id="cbx_horaVuelo" layoutX="41.0" layoutY="186.0" prefHeight="26.0" prefWidth="173.0" />
+                        <Button layoutX="52.0" layoutY="275.0" mnemonicParsing="false" onAction="#consultarDisponibilidadAgenda" prefHeight="38.0" prefWidth="154.0" text="Consultar disponiblidad">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+            <AnchorPane fx:id="panel_VuelosProgramados" layoutX="198.0" layoutY="-1.0" prefHeight="671.0" prefWidth="998.0" style="-fx-background-color: #2e4053;" visible="false">
+               <children>
+                  <Text fill="WHITE" layoutX="44.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vuelos Programados">
+                     <font>
+                        <Font name="Yu Gothic Light" size="24.0" />
+                     </font>
+                  </Text>
+                  <TableView fx:id="tabla_VuelosProgramados" layoutX="8.0" layoutY="60.0" prefHeight="494.0" prefWidth="967.0">
+                    <columns>
+                      <TableColumn fx:id="columIdVuelo" prefWidth="62.4000244140625" text="Id Vuelo" />
+                      <TableColumn fx:id="columIdPiloto" prefWidth="103.20001220703125" text="Id Piloto" />
+                        <TableColumn fx:id="columIdCopiloto" prefWidth="100.0" text="Id Copiloto" />
+                        <TableColumn fx:id="columIdAvion" prefWidth="78.4000244140625" text="Id Avion" />
+                        <TableColumn fx:id="columHora" prefWidth="65.60003662109375" text="Hora" />
+                        <TableColumn fx:id="columFecha" prefWidth="89.60003662109375" text="Fecha" />
+                        <TableColumn fx:id="columTipo" prefWidth="104.0" text="Tipo" />
+                        <TableColumn fx:id="columEstado" prefWidth="102.39996337890625" text="Estado" />
+                        <TableColumn fx:id="columDestinoVuelo" prefWidth="118.40008544921875" text="Destino" />
+                        <TableColumn fx:id="columProcedenciaVuelo" prefWidth="161.5999755859375" text="Procedencia" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="312.0" layoutY="593.0" mnemonicParsing="false" onAction="#cancelarVueloAerolinea" prefHeight="46.0" prefWidth="136.0" text="CANCELAR VUELO">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button layoutX="510.0" layoutY="593.0" mnemonicParsing="false" onAction="#eliminarVueloAerolinea" prefHeight="46.0" prefWidth="134.0" text="ELIMINAR VUELO">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <TextField fx:id="txt_idVueloCancelarEliminar" layoutX="63.0" layoutY="591.0" promptText="Id Vuelo" />
+                  <Button layoutX="699.0" layoutY="593.0" mnemonicParsing="false" onAction="#activarVueloAerolinea" prefHeight="46.0" prefWidth="134.0" text="ACTIVAR VUELO">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="panelReprogramarVuelo" layoutX="194.0" prefHeight="671.0" prefWidth="1003.0" style="-fx-background-color: #2E4053;" visible="false">
+               <children>
+                  <AnchorPane fx:id="panel_consultarAgendaModificar" layoutX="68.0" layoutY="187.0" prefHeight="346.0" prefWidth="287.0" style="-fx-background-color: #1d2d3b;">
+                     <children>
+                        <Text fill="WHITE" layoutX="45.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <ComboBox fx:id="cbx_horasModificar" layoutX="45.0" layoutY="82.0" onMouseClicked="#horaModificar" onMousePressed="#horaModificar" prefHeight="16.0" prefWidth="203.0" />
+                        <Text fill="WHITE" layoutX="42.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <DatePicker fx:id="date_fechaModificar" editable="false" layoutX="45.0" layoutY="173.0" onMouseClicked="#horaModificar" onMousePressed="#horaModificar" prefHeight="26.0" prefWidth="203.0" />
+                        <Button layoutX="67.0" layoutY="254.0" mnemonicParsing="false" onAction="#consultarDisponibilidadModificar" prefHeight="38.0" prefWidth="173.0" text="Consultar Disponibilidad">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="panelModificarInfoVuelo" disable="true" layoutX="468.0" layoutY="79.0" prefHeight="562.0" prefWidth="511.0" style="-fx-background-color: #1d2d3b;">
+                     <children>
+                        <ComboBox fx:id="cbx_TipoVueloModificar" layoutX="280.0" layoutY="219.0" prefHeight="26.0" prefWidth="146.0" />
+                        <Text fill="WHITE" layoutX="90.0" layoutY="213.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tipo Vuelo">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="90.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id Avion">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="90.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id Piloto">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="90.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id Copiloto">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Button fx:id="btn_modificarIdPiloto" layoutX="280.0" layoutY="295.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="142.0" text="Modificar">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
+                        <TextField fx:id="txt_IdPilotoModificar" layoutX="92.0" layoutY="294.0" onMousePressed="#ocultarModificar" prefHeight="26.0" prefWidth="150.0" />
+                        <TextField fx:id="txt_IdCopilotoModificar" layoutX="92.0" layoutY="364.0" onMousePressed="#ocultarModificar" prefHeight="26.0" prefWidth="154.0" />
+                        <Button fx:id="btn_modificarIdCopiloto" layoutX="280.0" layoutY="364.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="146.0" text="Modificar">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="btn_modificarIdAvion" layoutX="280.0" layoutY="439.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Modificar">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
+                        <Button fx:id="btn_modificarInfoVuelo" layoutX="184.0" layoutY="494.0" mnemonicParsing="false" onAction="#modificarInformacionVuelo" prefHeight="43.0" prefWidth="142.0" style="-fx-background-color: green;" text="Modificar Informacion" textFill="WHITE" />
+                        <TextField fx:id="txt_IdAvionModificar" layoutX="92.0" layoutY="439.0" onMousePressed="#ocultarModificar" prefHeight="26.0" prefWidth="150.0" />
+                        <TextField fx:id="txt_TipoVueloModificar" editable="false" layoutX="92.0" layoutY="218.0" prefHeight="26.0" prefWidth="150.0" />
+                        <Text fill="WHITE" layoutX="280.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modificar tipo Vuelo">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="90.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Destino">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Text fill="WHITE" layoutX="280.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Procedencia">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_DestinoModificar" layoutX="92.0" layoutY="141.0" onMousePressed="#ocultarModificar" prefHeight="26.0" prefWidth="150.0" />
+                        <TextField fx:id="txt_procedenciaModificar" layoutX="280.0" layoutY="141.0" onMousePressed="#ocultarModificar" prefHeight="26.0" prefWidth="150.0" />
+                        <Text fill="WHITE" layoutX="90.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_FechaModificar" editable="false" layoutX="92.0" layoutY="72.0" prefHeight="26.0" prefWidth="150.0" />
+                        <Text fill="WHITE" layoutX="280.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <TextField fx:id="txt_horaModificar" editable="false" layoutX="280.0" layoutY="73.0" prefHeight="26.0" prefWidth="146.0" />
+                     </children>
+                  </AnchorPane>
+                  <TextField fx:id="txt_vueloModificar" layoutX="62.0" layoutY="116.0" promptText="ID VUELO" />
+                  <Text fill="WHITE" layoutX="62.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MODIFICAR FECHA DE VUELO" wrappingWidth="256.9482421875">
+                     <font>
+                        <Font name="Yu Gothic Light" size="18.0" />
+                     </font>
+                  </Text>
+                  <Separator layoutX="416.0" layoutY="20.0" orientation="VERTICAL" prefHeight="626.0" prefWidth="18.0" />
+                  <Text fill="WHITE" layoutX="468.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="MODIFICAR INFORMACION DE VUELO" wrappingWidth="348.148193359375">
+                     <font>
+                        <Font name="Yu Gothic Light" size="18.0" />
+                     </font>
+                  </Text>
+                  <Button layoutX="234.0" layoutY="116.0" mnemonicParsing="false" onAction="#buscarVueloModificar" text="BUSCAR VUELO" />
+                  <Button fx:id="btn_reprogramarVuelo" disable="true" layoutX="150.0" layoutY="581.0" mnemonicParsing="false" onAction="#reprogramarVueloHoraFecha" prefHeight="43.0" prefWidth="142.0" style="-fx-background-color: green;" text="Reprogramar Vuelo" textFill="WHITE" />
+                  <Text fx:id="erroNoIdVuelo" fill="RED" layoutX="35.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="*Digita una id de vuelo para buscar" visible="false" />
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="panel_HangaresAerolineas" prefHeight="671.0" prefWidth="1192.0" style="-fx-background-color: #2E4053;" visible="false">
+         <children>
+            <AnchorPane prefHeight="671.0" prefWidth="208.0" style="-fx-background-color: #1d2d3b;">
+               <children>
+                  <ImageView fitHeight="93.0" fitWidth="100.0" layoutX="50.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/icons8_hangar_240px.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="71.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hangar">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Text>
+                  <Button alignment="BASELINE_LEFT" layoutY="295.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="208.0" style="-fx-background-color: null;" text="Reservar hangar" textFill="#00bfff">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_checklist_128px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="NONE" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="BASELINE_LEFT" layoutY="337.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="208.0" style="-fx-background-color: null;" text="Cancelar reserva" textFill="#00bfff">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_checklist_128px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="NONE" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" layoutX="35.0" layoutY="596.0" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" prefHeight="38.0" prefWidth="122.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30;" text="Salir" textFill="#00bfff">
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="41.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_checklist_128px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="NONE" />
+                     </cursor>
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
