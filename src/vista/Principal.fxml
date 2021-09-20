@@ -1118,9 +1118,9 @@
                   <Image url="@../imagenes/nombre.png" />
                </image>
             </ImageView>
-            <Text fill="#fffcfc" layoutX="83.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido a" wrappingWidth="424.7999664306642">
+            <Text fill="#fffcfc" layoutX="83.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bienvenido a" wrappingWidth="551.9999786376954">
                <font>
-                  <Font name="Agency FB Bold" size="83.0" />
+                  <Font name="Arial" size="83.0" />
                </font>
                <effect>
                   <DropShadow blurType="TWO_PASS_BOX" height="255.0" radius="127.0" width="255.0">
@@ -1130,7 +1130,7 @@
                   </DropShadow>
                </effect>
             </Text>
-            <Text fill="#fffcfc" layoutX="83.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aeropuerto el Campanero" wrappingWidth="619.2">
+            <Text fill="#fffcfc" layoutX="85.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aeropuerto el Campanero" wrappingWidth="660.8000244140626">
                <font>
                   <Font name="Agency FB" size="71.0" />
                </font>
