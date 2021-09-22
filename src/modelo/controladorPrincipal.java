@@ -1212,7 +1212,7 @@ public class controladorPrincipal implements Initializable {
 		this.metodosSQL.conectarBD();
 	
 	    	//CARGAR ITEMS DEL LOGIN PRINCIPAL
-	    	this.cbx_orgaizacion.getItems().addAll("Administrador","Aerolinea");
+	    	this.cbx_orgaizacion.getItems().addAll("Administrador","Aerolinea","Administrador Hangares");
 			
 	   
 	  
@@ -1444,12 +1444,17 @@ public class controladorPrincipal implements Initializable {
 	    	 this.panelLogin.setVisible(true);
 			 this.panel_welcome.setVisible(true);
 	     }
+	@FXML void cerrarSesionAdminitracionHangares(ActionEvent event){
+		     this.panel_menuPrinicipalHangares.setVisible(false);
+	    	 this.panelLogin.setVisible(true);
+			 this.panel_welcome.setVisible(true);
+	}
 	    //OCULTAR ICONOS DE LA PANTALLA INICIAL DEL SISTEMA
 	public void ocultarIconosPanelPrincipal() {
 			 this.panel_welcome.setVisible(false);
 	    }
         
-	    //INGRESAR AL SISTEMA EN GENERAL:  COMO AEROLINEA O ADMINISTRADOR
+	    //INGRESAR AL SISTEMA EN GENERAL:  COMO AEROLINEA O ADMINISTRADOR, ADMINISTRADOR DE HANGARES
 	@FXML void ingresar(ActionEvent event) {
 	
 		   try {
@@ -1495,6 +1500,24 @@ public class controladorPrincipal implements Initializable {
 				 }
 		     }
 		     //--------------------------------------------------------------------------------------------------------
+			 //INGRESAR AL SISTEMA COMO ADMINISTRADOR DE HANGARES
+			 if(tipoUsuario.equals("Administrador Hangares")) {
+				boolean esta = metodosSQL.iniciarSesionAdministradorHangares(usur,pass,tipoUsuario);
+				System.out.println(esta);
+				if(esta) {
+			   
+					this.panelLogin.setVisible(false);
+					this.panel_menuPrinicipalHangares.setVisible(true);
+					ocultarIconosPanelPrincipal();
+			   
+				}else{
+					//Notificacion notificacion = new Notificacion("El usuario o la contrasena no son correctos", 2);
+					Alert alert = new Alert(AlertType.ERROR);
+					alert.setHeaderText("Usuario o contraseña invalidos");
+					alert.show();
+				}
+			}
+			//--------------------------------------------------------------------------------------------------------
 		   }catch (Exception e) {
 				 Alert alert = new Alert(AlertType.ERROR);
 				 alert.setHeaderText("Informacion Incompleta para ingresar al sistema");
@@ -1651,7 +1674,7 @@ public class controladorPrincipal implements Initializable {
 	@FXML private TableColumn colum_idAvionRH;
 	@FXML private TableColumn colum_aerolineaRH;
 	@FXML private TextField id_usuario_del_sistema,nombre_usuario_del_sistema,usuario_usuario_del_sistema,contrasena_usuario_del_sistema;
-
+     
 	//--------------------------------------------------------------------
 	//METODOS DE ADMINISTRACION 
 	@FXML void menuAdministracionHangaresAerolienas(ActionEvent event) {
@@ -2005,24 +2028,38 @@ public class controladorPrincipal implements Initializable {
 		
 	}
 
-	
+	//-------------------------------------------------------------------------
 	//HANGARES ADMINISTRACION
-	@FXML void registrarHangar(ActionEvent event){
-		String codigo = this.txt_codigoHangar.getText();
-		String ubicacion = this.txt_ubicacionHangar.getText();
-		String capacidad = this.txt_capacidadHangar.getText();
+	@FXML private AnchorPane panel_menuPrinicipalHangares,panelFormularioRegistroHangar;
+	@FXML private TextField codigoHangar,capacidadHangar,ubicacionHangar,tarifaPorHoraHangar;
 
+	@FXML void registrarHangar(ActionEvent event){
+		
+		String codigo = this.codigoHangar.getText();
+		String ubicacion = this.ubicacionHangar.getText();
+		String capacidad = this.capacidadHangar.getText();
+		String tarifa   = this.tarifaPorHoraHangar.getText();
 
 		//VALIDAMOS QUE TODOS LOS CAMPOS ESTEN COMPLETOS
-		if(!codigo.equals("")&&!ubicacion.equals("")&&!capacidad.equals("")){
-			metodosSQL.registrarNuevoHangar(codigo, ubicacion, capacidad);
+		if(!codigo.equals("")&&!ubicacion.equals("")&&!capacidad.equals("")&&!tarifa.equals("")){
+			metodosSQL.registrarNuevoHangar(codigo, ubicacion, capacidad, tarifa);
 		}else{
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setContentText("Existen campos vacios");
 			alert.show();
 		}
 	}
-	
+	//MOSTRAMOS EL FORMULARIO DE REGISTRO DE HANGAR
+	@FXML void mostrarFormuRegistroHangar(ActionEvent e){
+		this.panelFormularioRegistroHangar.setVisible(true);
+		this.panel_menuPrinicipalHangares.setDisable(true);
+	}
+	//OCULTAMOS EL FORMULARIO DE REGISTRO DE HANGAR
+	@FXML void ocultarFormuRegistroHangar(ActionEvent e ){
+		this.panelFormularioRegistroHangar.setVisible(false);
+		this.panel_menuPrinicipalHangares.setDisable(false);
+	}
+	//----------------------------------------------------------------------
     //----------------------------------------------------------------------
     // P A N E  L    PRINCIPAL AEROLINEAAS
     public void  panelPrincipalAerolineas() {

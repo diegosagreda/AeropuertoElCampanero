@@ -199,6 +199,23 @@ public class MetodosSQL {
 		        }catch (Exception e) {}
 	    return estaa;
     }
+	public boolean iniciarSesionAdministradorHangares(String user, String pass,String rol) {
+	
+    	boolean estaa = false;
+    	    // LOGIN - BUSQUEDA DE ADMINISTRADORES PARA INGRESAR EN EL SISTEMA
+		        try{
+		                java.sql.Statement st = conexion.createStatement();
+			            String sql = "SELECT * FROM usuarios WHERE usuario = "+"'"+user+"'"+"AND contrasena = "+"'"+pass+"'"+"AND rol = "+"'"+rol+"'";
+			            ResultSet resultSet = st.executeQuery(sql);
+
+		            while(resultSet.next()){
+		            	String usuario = resultSet.getString("usuario");
+		            	if(!usuario.equals("")) estaa = true;    
+		            };
+		        }catch (Exception e) {}
+	    return estaa;
+    }
+
  
     //--------------------------------------------------------------------------------------------------
     //------------------------------------------------------------------------------------------------------
@@ -1077,22 +1094,32 @@ public class MetodosSQL {
         }
     }
 	//METODO PARA REGISTRAR UN HANGARR
-    public void registrarNuevoHangar(String codigo, String ubicacion, String capacidad){
+    public void registrarNuevoHangar(String codigo, String ubicacion, String capacidad,String tarifa){
 		boolean esta = buscarHangar(codigo);
+		String estado = "Vacio", idavion = "Vacio";
+		
     	if(!esta) {
+			System.out.print("no esta");
     		try{
  	           
 	            java.sql.Statement st = conexion.createStatement();
-	            String sql = "insert into hangares(codigo,ubicacion,capacidad,estado,id_avion,aerolinea)";
-	            sql += "values ('"+codigo+"','"+ubicacion+"','"+capacidad+"','"+"Vacio"+"','"+"Vacio"+"','"+"Vacio"+"')";
+	            String sql = "INSERT INTO  hangares(codigo, ubicacion, capacidad, estado, tarifa, idavion)";
+	            sql += "VALUES ('"+codigo+"','"+ubicacion+"','"+capacidad+"','"+estado+"','"+tarifa+"','"+idavion+"')";
 	            st.execute(sql);
-	            Notificacion notificacion = new Notificacion("Hangar registrado con exito", 1);
+	            //new Notificacion("Hangar registrado con exito", 1);
+				Alert alert = new Alert(AlertType.INFORMATION);
+	    		alert.setContentText("Hangar registrado con exito");
+	    		alert.show();
 	        }catch(Exception e ){
 	        }
     	}else{
-    	    Notificacion notificacion = new Notificacion("Ya se encuentra registrado un Hangar con el mismo codigo", 2);
+			Alert alert = new Alert(AlertType.ERROR);
+	    	alert.setContentText("Ya se encuentra registrado un hangar con el mismo codigo");
+	    	alert.show();
+    	    //new Notificacion("Ya se encuentra registrado un Hangar con el mismo codigo", 2);
     	}
 	}
+
     public void reservarHangar(String codigo, String id_avion){
 	    Avion avion = retornarInformacionAvion(id_avion);
 	    String nom_aero = getNombreAeroliena(avion.getId_aerolinea());
