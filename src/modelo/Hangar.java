@@ -8,16 +8,39 @@ public class Hangar {
     private String id_avion;
     private String estado;
     private String aerolinea;
-    
+    private String tarifa;
 
-    public Hangar(String codigo, String ubicacion, String capacidad, String id_avion, String estado, String aerolinea) {
+  
+
+
+    public Hangar(String codigo, String ubicacion, String capacidad, String estado, String tarifa, String id_avion) {
         this.codigo = codigo;
         this.ubicacion = ubicacion;
         this.capacidad = capacidad;
         this.id_avion = id_avion;
         this.estado = estado;
-        this.aerolinea = aerolinea;
+        this.tarifa = tarifa;
     }
+    
+    
+
+    public Hangar(String codigo, String estado) {
+        this.codigo = codigo;
+        this.estado = estado;
+    }
+
+
+
+    public String getTarifa() {
+        return tarifa;
+    }
+
+
+
+    public void setTarifa(String tarifa) {
+        this.tarifa = tarifa;
+    }
+
 
 
     public String getCodigo() {

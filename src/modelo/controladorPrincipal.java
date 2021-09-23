@@ -1210,7 +1210,8 @@ public class controladorPrincipal implements Initializable {
 		this.metodosSQL = new MetodosSQL();
 		//VALIDACION SI EL ES SISTEMA SE ENCUENTRA EN LINEA
 		this.metodosSQL.conectarBD();
-	
+		
+		
 	    	//CARGAR ITEMS DEL LOGIN PRINCIPAL
 	    	this.cbx_orgaizacion.getItems().addAll("Administrador","Aerolinea","Administrador Hangares");
 			
@@ -1354,13 +1355,23 @@ public class controladorPrincipal implements Initializable {
             metodosSQL.cargarAvionesAeroliena(tabla_avionesAerolinea, IDaerolinea);
             
             //RELACIONAMOS LA TABLA DE REPORTES DE HANGARES
-			this.colum_codigoRH.setCellValueFactory(new PropertyValueFactory<>("codigo"));
-			this.colum_UbicacionRH.setCellValueFactory(new PropertyValueFactory<>("ubicacion"));
-			this.colum_capacidadRH.setCellValueFactory(new PropertyValueFactory<>("capacidad"));
-			this.colum_estadoRH.setCellValueFactory(new PropertyValueFactory<>("estado"));
-			this.colum_idAvionRH.setCellValueFactory(new PropertyValueFactory<>("id_avion"));
-			this.colum_aerolineaRH.setCellValueFactory(new PropertyValueFactory<>("aerolinea"));
-			metodosSQL.cargarHangaresAdministracion(tabla_reportesHangar);
+			this.colum_codigoHangar.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+			this.colum_ubicacionHangar.setCellValueFactory(new PropertyValueFactory<>("ubicacion"));
+			this.colum_capacidadHangar.setCellValueFactory(new PropertyValueFactory<>("capacidad"));
+			this.colum_estadoHangar.setCellValueFactory(new PropertyValueFactory<>("estado"));
+			this.colum_tarifaHangar.setCellValueFactory(new PropertyValueFactory<>("tarifa"));
+			this.colum_idAvionHangar.setCellValueFactory(new PropertyValueFactory<>("id_avion"));
+			metodosSQL.cargarHangaresAdministracion(tabla_Hangares);
+
+			//A�ADIMOS ESCUCHADOR A LA TABLA DE HANGARES
+	    	this.tabla_Hangares.addEventFilter(MouseEvent.MOUSE_CLICKED,e ->{
+	    		int pos = tabla_Hangares.getSelectionModel().getSelectedIndex();
+	    		txt_codigoHangarEliminar.setText(tabla_Hangares.getItems().get(pos).getCodigo());
+				txt_ubicacionHangarModifi.setText(tabla_Hangares.getItems().get(pos).getUbicacion());
+				txt_capacidadHangarModifi.setText(tabla_Hangares.getItems().get(pos).getCapacidad());
+				txt_tarifaHangarModificar.setText(tabla_Hangares.getItems().get(pos).getTarifa());
+					
+	    	});
 		
             
             
@@ -2030,8 +2041,11 @@ public class controladorPrincipal implements Initializable {
 
 	//-------------------------------------------------------------------------
 	//HANGARES ADMINISTRACION
-	@FXML private AnchorPane panel_menuPrinicipalHangares,panelFormularioRegistroHangar;
-	@FXML private TextField codigoHangar,capacidadHangar,ubicacionHangar,tarifaPorHoraHangar;
+	@FXML private AnchorPane panel_menuPrinicipalHangares,panelFormularioRegistroHangar,panel_ReservaHangar,panel_FormularioReservarHangar;
+	@FXML private TextField codigoHangar,capacidadHangar,ubicacionHangar,tarifaPorHoraHangar,txt_codigoHangarEliminar,txt_ubicacionHangarModifi,
+	txt_capacidadHangarModifi,txt_tarifaHangarModificar;
+	@FXML private TableView<Hangar> tabla_Hangares;
+	@FXML private TableColumn colum_codigoHangar,colum_ubicacionHangar,colum_capacidadHangar,colum_estadoHangar,colum_tarifaHangar,colum_idAvionHangar;
 
 	@FXML void registrarHangar(ActionEvent event){
 		
@@ -2043,6 +2057,8 @@ public class controladorPrincipal implements Initializable {
 		//VALIDAMOS QUE TODOS LOS CAMPOS ESTEN COMPLETOS
 		if(!codigo.equals("")&&!ubicacion.equals("")&&!capacidad.equals("")&&!tarifa.equals("")){
 			metodosSQL.registrarNuevoHangar(codigo, ubicacion, capacidad, tarifa);
+			this.tabla_Hangares.getItems().clear();
+			metodosSQL.cargarHangaresAdministracion(tabla_Hangares);
 		}else{
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setContentText("Existen campos vacios");
@@ -2052,12 +2068,70 @@ public class controladorPrincipal implements Initializable {
 	//MOSTRAMOS EL FORMULARIO DE REGISTRO DE HANGAR
 	@FXML void mostrarFormuRegistroHangar(ActionEvent e){
 		this.panelFormularioRegistroHangar.setVisible(true);
-		this.panel_menuPrinicipalHangares.setDisable(true);
+	 	this.panel_menuPrinicipalHangares.setDisable(true);
 	}
 	//OCULTAMOS EL FORMULARIO DE REGISTRO DE HANGAR
 	@FXML void ocultarFormuRegistroHangar(ActionEvent e ){
 		this.panelFormularioRegistroHangar.setVisible(false);
 		this.panel_menuPrinicipalHangares.setDisable(false);
+		this.panel_ReservaHangar.setDisable(false);
+	}
+	@FXML void mostrarMenuDeReservaDeHangar(ActionEvent e){
+		this.panel_ReservaHangar.setVisible(true);
+		this.panel_menuPrinicipalHangares.setVisible(false);
+	}
+	@FXML void adicionarNuevoHangarDesdeReportes(ActionEvent event){
+		this.panelFormularioRegistroHangar.setVisible(true);
+		this.panel_ReservaHangar.setDisable(true);
+	}
+	@FXML void eliminarHangar(ActionEvent event){
+		String codigo = txt_codigoHangarEliminar.getText();
+		if(!codigo.equals("")){
+			metodosSQL.eliminarHangar(codigo);
+			this.tabla_Hangares.getItems().clear();
+			metodosSQL.cargarHangaresAdministracion(tabla_Hangares);
+		}else{
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Digita o selecciona el codigo del hangar a eliminar");
+			alert.show();
+		}
+	}
+	@FXML void salirDePanelReservas(ActionEvent event){
+		this.panel_ReservaHangar.setVisible(false);
+		this.panel_menuPrinicipalHangares.setVisible(true);
+	}
+	@FXML void modificarInformacionHangar(ActionEvent event){
+		String codigo = txt_codigoHangarEliminar.getText();
+		if(!codigo.equals("")){
+			//VALIDAMOS QUE EL ESTADO DEL HANGAR SEA VACIO
+			Hangar hangar = metodosSQL.retornarInformacionHangar(codigo);
+			if(hangar.getEstado().equals("Vacio")){
+
+				String ubicacion = txt_ubicacionHangarModifi.getText();
+				String capacidad = txt_capacidadHangarModifi.getText();
+				String tarifa =    txt_tarifaHangarModificar.getText();
+
+				this.metodosSQL.modificarInformacionHangar(codigo, ubicacion, capacidad, tarifa);
+				this.tabla_Hangares.getItems().clear();
+			    this.metodosSQL.cargarHangaresAdministracion(tabla_Hangares);
+
+			}else{
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setTitle("El hangar se encuentra ocupado");
+				alert.setContentText("Para modificar la informacion el hangar debe estar desocupado");
+				alert.show();
+			}
+		}else{
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("Digita o selecciona el codigo del hangar a modificar");
+			alert.show();
+		}
+	}
+	@FXML void limpiarCamposModificarHangar(ActionEvent event){
+				this.txt_codigoHangarEliminar.clear();
+		        this.txt_ubicacionHangarModifi.clear();
+				this.txt_capacidadHangarModifi.clear();
+				this.txt_tarifaHangarModificar.clear();
 	}
 	//----------------------------------------------------------------------
     //----------------------------------------------------------------------

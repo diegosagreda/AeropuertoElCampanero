@@ -531,6 +531,26 @@ public class MetodosSQL {
     	return esta;
     	
     }
+	public Hangar retornarInformacionHangar(String codigo) {
+    	Hangar hangar = null;
+     	try{ 
+            java.sql.Statement st = conexion.createStatement();
+            
+	            String sql = "SELECT * FROM hangares WHERE codigo ="+"'"+codigo+"'";
+	            ResultSet resultSet = st.executeQuery(sql);
+       
+            while(resultSet.next()){
+            	String codigoH = resultSet.getString("codigo");
+				String estado = resultSet.getString("estado");
+            	hangar = new Hangar(codigoH, estado);
+            };
+        }catch (Exception e) {
+			
+		}
+    	return hangar;
+    	
+    }
+	//---------------------------------------------------------------------------------------------------------------------
 	public Hangar consultarDisponibilidadDeHangares(){
 		Hangar hangar = null;
 		try{ 
@@ -704,30 +724,7 @@ public class MetodosSQL {
 			
 		}
     //---------------------------------------------------------------------------------------------------------------
-	public Hangar retornarInfomacionHangar(String codigo){
-		Hangar hangar = null;
-		try{ 
-			java.sql.Statement st = conexion.createStatement();
-			
-				String sql = "SELECT * FROM hanagares WHERE codigo ="+"'"+codigo+"'";
-				ResultSet resultSet = st.executeQuery(sql);
-	   
-			while(resultSet.next()){
-				String codigos = resultSet.getString("codigos");
-				if(!codigos.equals("")) {
-					String codigoHangar = resultSet.getString("codigo");
-					String ubicacion = resultSet.getString("ubicacion");
-					String capacidad = resultSet.getString("capaacidad");
-					String id_avion = resultSet.getString("id_avion");
-				
-				    hangar = new Hangar(codigo, ubicacion, capacidad,null,null,null);
-				}
-			};
-		}catch (Exception e) {
-			
-		}
-		return hangar;
-	}
+	
     public void modificarInformacionVuelo(String id_vuelo,String id_piloto,String id_copiloto, String id_avion,String tipoVuelo,String destino,String procedencia) {
 		try {
 			Statement st = conexion.createStatement();
@@ -787,11 +784,31 @@ public class MetodosSQL {
 	            		    +" numeromotores = "+"'"+num_motores+"'"+" where idavion = "+"'"+id_avion+"'";
 	            st.execute(sql);
 	            st.close();
-	            new Notificacion("Informacion modificada con exito", 1);
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setContentText("Informacion modificada con exito");
+				alert.show();
+	        
          }catch (Exception ex) {
 			
 	     }
     }
+	public void modificarInformacionHangar(String codigo,String ubicacion, String capacidad, String tarifa) {
+    	try {
+      	    Statement st = conexion.createStatement();
+	            String sql = "update hangares set ubicacion ="+"'"+ubicacion+"'"+","+"capacidad ="+"'"+capacidad+"'"+","
+      	                    +"tarifa ="+"'"+tarifa+"'"+" where codigo = "+"'"+codigo+"'";
+	            st.execute(sql);
+	            st.close();
+				Alert alert = new Alert(Alert.AlertType.INFORMATION);
+				alert.setContentText("Informacion modificada con exito");
+				alert.show();
+         }catch (Exception ex) {
+			
+	     }
+    }
+
+
+	//--------------------------------------------------------------------------------------------------------------------------------------------------------
     public void reprogramarVuelo(String hora,String fecha,String id_vuelo) {
     	try {
       	    Statement st = conexion.createStatement();
@@ -943,6 +960,20 @@ public class MetodosSQL {
     		String sql = "DELETE FROM vuelos WHERE id_vuelo = "+"'"+id_vuelo+"'";
     		st.execute(sql);
     		Notificacion notificacion = new Notificacion("Vuelo eliminado con exito", 1);
+    	}catch (Exception e) {
+		
+		}
+    }
+	public void eliminarHangar(String codigo) {
+    	try {
+    		java.sql.Statement st = conexion.createStatement();
+    		
+    		String sql = "DELETE FROM hangares WHERE codigo = "+"'"+codigo+"'";
+    		st.execute(sql);
+			Alert alert = new Alert(Alert.AlertType.INFORMATION);
+			alert.setContentText("Hangar eliminado con exito");
+			alert.show();
+    		//new Notificacion("Vuelo eliminado con exito", 1);
     	}catch (Exception e) {
 		
 		}
@@ -1637,13 +1668,13 @@ public class MetodosSQL {
             	String codigo =    resultSet.getString("codigo");
             	String ubicacion = resultSet.getString("ubicacion");
 				String capacidad = resultSet.getString("capacidad");
-				String id_avion  = resultSet.getString("id_avion");
-				String aerolinea = resultSet.getString("aerolinea");
+				String id_avion  = resultSet.getString("idavion");
+				String tarifa = resultSet.getString("tarifa");
 				String estado =    resultSet.getString("estado");
 
 				
 
-		        Hangar hangar = new Hangar(codigo, ubicacion, capacidad,id_avion,estado,aerolinea);
+		        Hangar hangar = new Hangar(codigo, ubicacion, capacidad,estado,tarifa,id_avion);
 				tabla_reporteHangares.getItems().add(hangar);
 
             };
