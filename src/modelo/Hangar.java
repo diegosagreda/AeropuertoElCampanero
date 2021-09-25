@@ -1,5 +1,5 @@
 package modelo;
-
+import javafx.scene.control.Button;
 public class Hangar {
 
     private String codigo;
@@ -9,7 +9,7 @@ public class Hangar {
     private String estado;
     private String aerolinea;
     private String tarifa;
-
+    private Button button;
   
 
 
@@ -23,6 +23,35 @@ public class Hangar {
     }
     
     
+    
+
+    public Hangar(String codigo, String ubicacion, String capacidad, String estado, 
+            String tarifa,String id_avion, Button button) {
+        this.codigo = codigo;
+        this.ubicacion = ubicacion;
+        this.capacidad = capacidad;
+        this.id_avion = id_avion;
+        this.estado = estado;
+        this.tarifa = tarifa;
+        this.button = button;
+    }
+
+    
+
+
+    public Button getButton() {
+        return button;
+    }
+
+
+
+
+    public void setButton(Button button) {
+        this.button = button;
+    }
+
+
+
 
     public Hangar(String codigo, String estado) {
         this.codigo = codigo;

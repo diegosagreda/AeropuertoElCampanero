@@ -3,6 +3,7 @@ package modelo;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -987,6 +988,8 @@ public class controladorPrincipal implements Initializable {
 	    static String IDAVION_SELECCIONADO = "";
 	    static Piloto piloto;
 	    static Avion avion;
+		static String codigoHangarSeleccionado = "";
+
 	@FXML private AnchorPane panel_reportesAerolienas,panelReporteAvionesAeroliena,panelReportePilotosAeroliena;
 	@FXML private TableView<Piloto> tabla_pilotosDeAerolinea;
 	@FXML private TableView<Avion> tabla_avionesAerolinea;
@@ -1363,6 +1366,16 @@ public class controladorPrincipal implements Initializable {
 			this.colum_idAvionHangar.setCellValueFactory(new PropertyValueFactory<>("id_avion"));
 			metodosSQL.cargarHangaresAdministracion(tabla_Hangares);
 
+			//RELEACIONAMOS LA TABLA DE HANGARES Vacios
+			this.colum_codigoHangar1.setCellValueFactory(new PropertyValueFactory<>("codigo"));
+			this.colum_ubicacionHangar1.setCellValueFactory(new PropertyValueFactory<>("ubicacion"));
+			this.colum_capacidadHangar1.setCellValueFactory(new PropertyValueFactory<>("capacidad"));
+			this.colum_estadoHangar1.setCellValueFactory(new PropertyValueFactory<>("estado"));
+			this.colum_tarifaHangar1.setCellValueFactory(new PropertyValueFactory<>("tarifa"));
+			this.colum_idAvionHangar1.setCellValueFactory(new PropertyValueFactory<>("id_avion"));
+			this.colum_reserva.setCellValueFactory(new PropertyValueFactory<>("button"));
+			metodosSQL.cargarHangaresVaciosAdministracion(tabla_HangaresVaciosParaReservar);
+
 			//A�ADIMOS ESCUCHADOR A LA TABLA DE HANGARES
 	    	this.tabla_Hangares.addEventFilter(MouseEvent.MOUSE_CLICKED,e ->{
 	    		int pos = tabla_Hangares.getSelectionModel().getSelectedIndex();
@@ -1372,8 +1385,22 @@ public class controladorPrincipal implements Initializable {
 				txt_tarifaHangarModificar.setText(tabla_Hangares.getItems().get(pos).getTarifa());
 					
 	    	});
-		
-            
+			
+			//A�ADIMOS ESCUCHADOR A LA TABLA DE HANGARES VACIOS
+			this.tabla_HangaresVaciosParaReservar.addEventFilter(MouseEvent.MOUSE_CLICKED,e ->{
+				try{
+					int pos = tabla_HangaresVaciosParaReservar.getSelectionModel().getSelectedIndex();
+					txt_codigoHangarReservar.setText(tabla_HangaresVaciosParaReservar.getItems().get(pos).getCodigo());
+					Button btnReservar =tabla_HangaresVaciosParaReservar.getItems().get(pos).getButton();
+					btnReservar.setOnAction(event -> registrarAvionEnHangar());
+					
+				}catch(IndexOutOfBoundsException ex){
+
+				}	
+			});
+
+			
+			
             
 	    	//----------------------------------------------------------------------------------------
 	    	//CERRAR SESION DE AEROLINEA
@@ -2041,11 +2068,15 @@ public class controladorPrincipal implements Initializable {
 
 	//-------------------------------------------------------------------------
 	//HANGARES ADMINISTRACION
-	@FXML private AnchorPane panel_menuPrinicipalHangares,panelFormularioRegistroHangar,panel_ReservaHangar,panel_FormularioReservarHangar;
+	@FXML private AnchorPane panel_menuPrinicipalHangares,panelFormularioRegistroHangar,panel_ReservaHangar,panel_reportesHangar,
+	panel_rformularioReservaHangar,formularioRegistroAvionEnHangar,facturaReservaHangar;
 	@FXML private TextField codigoHangar,capacidadHangar,ubicacionHangar,tarifaPorHoraHangar,txt_codigoHangarEliminar,txt_ubicacionHangarModifi,
-	txt_capacidadHangarModifi,txt_tarifaHangarModificar;
-	@FXML private TableView<Hangar> tabla_Hangares;
-	@FXML private TableColumn colum_codigoHangar,colum_ubicacionHangar,colum_capacidadHangar,colum_estadoHangar,colum_tarifaHangar,colum_idAvionHangar;
+	txt_capacidadHangarModifi,txt_tarifaHangarModificar,txt_codigoHangarReservar,txt_idAvionRegisHangar;
+	@FXML private TableView<Hangar> tabla_Hangares,tabla_HangaresVaciosParaReservar;
+	@FXML private TableColumn colum_codigoHangar,colum_ubicacionHangar,colum_capacidadHangar,colum_estadoHangar,colum_tarifaHangar,colum_idAvionHangar,
+	colum_codigoHangar1,colum_ubicacionHangar1,colum_capacidadHangar1,colum_estadoHangar1,colum_tarifaHangar1,colum_idAvionHangar1,colum_reserva;
+	@FXML Text label_CodigoHangar,label_idAvionHangar,label_aerolineaHangar,label_fechaIngresoHangar,label_horaIngresoHangar,label_tarifaHangar;
+
 
 	@FXML void registrarHangar(ActionEvent event){
 		
@@ -2133,6 +2164,96 @@ public class controladorPrincipal implements Initializable {
 				this.txt_capacidadHangarModifi.clear();
 				this.txt_tarifaHangarModificar.clear();
 	}
+	@FXML void mostrarReporteHangares(ActionEvent event){
+		this.panel_reportesHangar.setVisible(true);
+		this.panel_rformularioReservaHangar.setVisible(false);
+
+		this.tabla_Hangares.getItems().clear();
+		this.metodosSQL.cargarHangaresAdministracion(tabla_Hangares);
+	}
+	@FXML void mostrarPanelReservarHangar(ActionEvent event){
+		this.panel_reportesHangar.setVisible(false);
+		this.panel_rformularioReservaHangar.setVisible(true);
+		
+
+		//CARGAMOS HANGARES VACIOS PARA RESERVA
+		this.tabla_HangaresVaciosParaReservar.getItems().clear();
+		metodosSQL.cargarHangaresVaciosAdministracion(tabla_HangaresVaciosParaReservar);
+		//VALIDACIOS SI LA TABLA DE HANGARES VACIOS ESTA VACIA
+		int numeroHangares = this.tabla_HangaresVaciosParaReservar.getItems().size();
+		if(numeroHangares == 0){
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setContentText("En el momento todos los hangares estan ocupados");
+			alert.show();
+		}
+	}
+	public void registrarAvionEnHangar(){
+		this.formularioRegistroAvionEnHangar.setVisible(true);
+		this.panel_ReservaHangar.setDisable(true);
+	}
+	@FXML void cancelarFormularioRegisAvionEnHangar(ActionEvent event){
+		this.formularioRegistroAvionEnHangar.setVisible(false);
+		this.panel_ReservaHangar.setDisable(false);
+	}
+	@FXML void RegisAvionEnHangar(ActionEvent event){
+		String idAvionRegisHangar = txt_idAvionRegisHangar.getText();
+
+		if(!idAvionRegisHangar.equals("")){
+			Avion avion = metodosSQL.retornarInformacionAvion(idAvionRegisHangar);
+			if(avion != null){
+				//SI EL AVION EXISTE SE REGISTRA Y MOSTRAMOS LA FACTURA DE INGRESO
+				this.formularioRegistroAvionEnHangar.setVisible(false);
+				this.facturaReservaHangar.setVisible(true);
+
+				
+				//TOMAMOS HORA ACTUAL DEL SISTEMA------------------------------
+				LocalDateTime locaDate = LocalDateTime.now();
+				int mes = locaDate.getMonthValue();
+				int ano = locaDate.getYear();
+				int dia = locaDate.getDayOfMonth();
+				int hours  = locaDate.getHour();
+				int minutes = locaDate.getMinute();
+				//--------------------------------------------------------------
+
+				//Setteamos los valores a la factura
+				this.label_CodigoHangar.setText(txt_codigoHangarReservar.getText());
+				this.label_idAvionHangar.setText(avion.getId_avion());
+				this.label_aerolineaHangar.setText(this.metodosSQL.tomarNombreDeAerolineaConId(avion.getId_aerolinea()));
+				this.label_fechaIngresoHangar.setText(dia+"/"+mes+"/"+ano);
+				this.label_horaIngresoHangar.setText(hours+" : "+minutes);
+				this.label_tarifaHangar.setText(metodosSQL.retornarHangar(txt_codigoHangarReservar.getText()).getTarifa());
+				
+				
+			}else{
+				Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setContentText("El avion no se encuentra registrado en el sistema");
+				alert.show();
+			}
+			//-----------------------------------------------------
+		}else{
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("Digita la id del avion a registrar");
+			alert.show();
+		}
+	}
+	@FXML void confirmarFactura(ActionEvent event){
+		this.facturaReservaHangar.setVisible(false);
+		this.panel_ReservaHangar.setDisable(false);
+
+		//Confirmamos factura y registramos en la base de datos.
+		this.metodosSQL.registrarFactura(label_fechaIngresoHangar.getText(), label_horaIngresoHangar.getText(),
+		txt_codigoHangarReservar.getText(),label_idAvionHangar.getText());
+
+		//----------------------------------------------------------------
+		this.tabla_HangaresVaciosParaReservar.getItems().clear();
+		metodosSQL.cargarHangaresVaciosAdministracion(tabla_HangaresVaciosParaReservar);
+	}
+	@FXML void cancelarFactura(ActionEvent event){
+		this.facturaReservaHangar.setVisible(false);
+		this.formularioRegistroAvionEnHangar.setVisible(true);
+	}
+	
+
 	//----------------------------------------------------------------------
     //----------------------------------------------------------------------
     // P A N E  L    PRINCIPAL AEROLINEAAS
@@ -2239,8 +2360,8 @@ public class controladorPrincipal implements Initializable {
 		this.txt_usuarioAerolineaActiDesacEliminar.clear();
 		this.txt_contraAerolineaActiDesacEliminar.clear();
 		this.txt_emailAerolineaActiDesacEliminar.clear();
-		
-		
+			
 	}
+    
 
 }

@@ -46,7 +46,7 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Button fx:id="botonReportePiloto1" alignment="BASELINE_LEFT" layoutY="312.0" mnemonicParsing="false" onAction="#mostrarReportePilotosAeroliena" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #2e4053;" text="Reporte Hangares" textFill="DEEPSKYBLUE">
+                  <Button fx:id="botonReportePiloto1" alignment="BASELINE_LEFT" layoutY="312.0" mnemonicParsing="false" onAction="#mostrarReporteHangares" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #2e4053;" text="Reporte Hangares" textFill="DEEPSKYBLUE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -58,7 +58,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button fx:id="botonReportePiloto11" alignment="BASELINE_LEFT" layoutX="-4.0" layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#mostrarReportePilotosAeroliena" prefHeight="46.0" prefWidth="226.0" style="-fx-background-color: #2e4053;" text="Reservar" textFill="DEEPSKYBLUE">
+                  <Button alignment="BASELINE_LEFT" layoutX="-4.0" layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#mostrarPanelReservarHangar" prefHeight="46.0" prefWidth="226.0" style="-fx-background-color: #2e4053;" text="Reservar" textFill="DEEPSKYBLUE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -84,7 +84,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="panel_FormularioReservarHangar" layoutX="252.0" layoutY="7.0" prefHeight="664.0" prefWidth="931.0" style="-fx-background-color: #141826;">
+            <AnchorPane fx:id="panel_reportesHangar" layoutX="252.0" layoutY="7.0" prefHeight="664.0" prefWidth="931.0" style="-fx-background-color: #141826;" visible="false">
                <children>
                   <TableView fx:id="tabla_Hangares" layoutX="38.0" layoutY="38.0" prefHeight="334.0" prefWidth="862.0">
                     <columns>
@@ -165,6 +165,22 @@
                         </ImageView>
                      </graphic>
                   </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="panel_rformularioReservaHangar" layoutX="250.0" layoutY="7.0" prefHeight="664.0" prefWidth="931.0" style="-fx-background-color: #141826;">
+               <children>
+                  <TableView fx:id="tabla_HangaresVaciosParaReservar" layoutX="58.0" layoutY="24.0" prefHeight="562.0" prefWidth="814.0">
+                     <columns>
+                        <TableColumn fx:id="colum_codigoHangar1" prefWidth="86.39999389648438" text="CODIGO" />
+                        <TableColumn fx:id="colum_ubicacionHangar1" prefWidth="132.800048828125" text="UBICACION" />
+                        <TableColumn fx:id="colum_capacidadHangar1" prefWidth="133.59994506835938" text="CAPACIDAD" />
+                        <TableColumn fx:id="colum_estadoHangar1" prefWidth="121.5999755859375" text="ESTADO" />
+                        <TableColumn fx:id="colum_tarifaHangar1" prefWidth="96.79998779296875" text="TARIFA" />
+                        <TableColumn fx:id="colum_idAvionHangar1" prefWidth="124.00006103515625" text="ID-AVION" />
+                        <TableColumn fx:id="colum_reserva" prefWidth="124.00006103515625" />
+                     </columns>
+                  </TableView>
+                  <TextField fx:id="txt_codigoHangarReservar" layoutX="97.0" layoutY="601.0" promptText="Codigo" />
                </children>
             </AnchorPane>
          </children>
@@ -1935,5 +1951,110 @@
             <TextField fx:id="tarifaPorHoraHangar" layoutX="251.0" layoutY="293.0" prefHeight="26.0" prefWidth="206.0" />
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="formularioRegistroAvionEnHangar" layoutX="408.0" layoutY="210.0" prefHeight="218.0" prefWidth="420.0" style="-fx-background-color: #2e4053;" visible="false">
+         <children>
+            <ImageView fitHeight="190.0" fitWidth="208.0" layoutX="122.0" layoutY="14.0" opacity="0.19" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/nombre.png" />
+               </image>
+            </ImageView>
+            <TextField fx:id="txt_idAvionRegisHangar" layoutX="94.0" layoutY="87.0" prefHeight="26.0" prefWidth="226.0" />
+            <Text fill="WHITE" layoutX="94.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id Avion">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Button layoutX="130.0" layoutY="138.0" mnemonicParsing="false" onAction="#RegisAvionEnHangar" text="Registrar" />
+            <Text fill="WHITE" layoutX="14.0" layoutY="29.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registro de avion">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+            <Button layoutX="225.0" layoutY="138.0" mnemonicParsing="false" onAction="#cancelarFormularioRegisAvionEnHangar" text="Cancelar" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="facturaReservaHangar" layoutX="387.0" layoutY="66.0" prefHeight="502.0" prefWidth="356.0" style="-fx-background-color: #2e4053;" visible="false">
+         <children>
+            <ImageView fitHeight="353.0" fitWidth="334.0" layoutX="17.0" layoutY="55.0" opacity="0.09" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/nombre.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="46.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Factura de reserva">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="50.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo Hangar:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="50.0" layoutY="161.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id Avion:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="50.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aerolinea:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="50.0" layoutY="254.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha Ingreso:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="50.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tarifa por Hora:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="50.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora Ingreso:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Button layoutX="80.0" layoutY="414.0" mnemonicParsing="false" onAction="#confirmarFactura" prefHeight="38.0" prefWidth="99.0" style="-fx-background-color: green;" text="Confirmar" textFill="#fff8f8">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="191.0" layoutY="414.0" mnemonicParsing="false" onAction="#cancelarFactura" prefHeight="38.0" prefWidth="96.0" style="-fx-background-color: red;" text="Cancelar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Text fx:id="label_CodigoHangar" fill="#02ff02" layoutX="201.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_aerolineaHangar" fill="#02ff02" layoutX="201.0" layoutY="206.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_fechaIngresoHangar" fill="#02ff02" layoutX="201.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_horaIngresoHangar" fill="#02ff02" layoutX="201.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_tarifaHangar" fill="#02ff02" layoutX="201.0" layoutY="346.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_idAvionHangar" fill="#02ff02" layoutX="201.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+         </children></AnchorPane>
    </children>
 </AnchorPane>

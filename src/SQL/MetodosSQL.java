@@ -9,10 +9,13 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import Notificaciones.Notificacion;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
@@ -21,6 +24,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.text.FontPosture;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import modelo.Aerolinea;
@@ -469,6 +473,21 @@ public class MetodosSQL {
         }catch (Exception e) {}
 		return solicitud;
 	}
+	public String tomarNombreDeAerolineaConId(String id){
+		String aerolinea = "";
+		try{ 
+            java.sql.Statement st = conexion.createStatement();
+            
+	            String sql = "SELECT * FROM aerolineas WHERE idaerolinea = "+"'"+id+"'";
+	            ResultSet resultSet = st.executeQuery(sql);
+       
+            while(resultSet.next()){
+            	aerolinea = resultSet.getString("nombre");      
+            };
+        }catch (Exception e) {}
+		return aerolinea;
+	}
+
     //---------------------------------------------------------------------------------------------------------------
     public boolean buscarDisponibilidadDeAgenda(String hora, String  fecha) {
     	boolean sihay = true;
@@ -1683,6 +1702,115 @@ public class MetodosSQL {
   
         }catch(Exception e ){       } 
 	}
+	//Retornar hangar con toda su informacion
+	public Hangar retornarHangar(String codigo){
+		Hangar hangar = null;
+		try{
+            java.sql.Statement st = conexion.createStatement();
+            String sql = "SELECT * FROM hangares where codigo ="+"'"+codigo+"'";
+            ResultSet resultSet = st.executeQuery(sql);
+            
+            while(resultSet.next()){
+			
+            	String codigo1 =    resultSet.getString("codigo");
+            	String ubicacion = resultSet.getString("ubicacion");
+				String capacidad = resultSet.getString("capacidad");
+				String id_avion  = resultSet.getString("idavion");
+				String tarifa = resultSet.getString("tarifa");
+				String estado =    resultSet.getString("estado");
+
+				
+
+		         hangar = new Hangar(codigo1, ubicacion, capacidad,estado,tarifa,id_avion);
+
+
+            };
+            st.close();
+            resultSet.close();
+  
+        }catch(Exception e ){       } 
+		return hangar;
+	}
+
+	public void cargarHangaresVaciosAdministracion(TableView<Hangar> tabla_reporteHangares) {
+		
+		try{
+			
+            java.sql.Statement st = conexion.createStatement();
+            String sql = "SELECT * FROM hangares WHERE estado = 'Vacio'";
+            ResultSet resultSet = st.executeQuery(sql);
+            
+            while(resultSet.next()){
+			
+            	String codigo =    resultSet.getString("codigo");
+            	String ubicacion = resultSet.getString("ubicacion");
+				String capacidad = resultSet.getString("capacidad");
+				String id_avion  = resultSet.getString("idavion");
+				String tarifa = resultSet.getString("tarifa");
+				String estado =    resultSet.getString("estado");
+				Button btn_reservar= new Button("Reservar");
+
+				//btn_reservar.setStyle("-fx-text-fill: white");
+				btn_reservar.setStyle("-fx-background-color: #2CB61B");
+				
+				
+               
+				Hangar hangar = new Hangar(codigo, ubicacion, capacidad,estado,tarifa,id_avion,btn_reservar);
+				tabla_reporteHangares.getItems().add(hangar);
+			
+            };
+            st.close();
+            resultSet.close();
+        }catch(Exception e ){       } 
+
+	}
+    //----------------------------------------------------------------------------
+	//------------  TODO FACTURAS ------------------------------------------------
+	public String numeroDeFactura(){
+		String numeroDeFactura = "0";
+		try{
+			
+            java.sql.Statement st = conexion.createStatement();
+            String sql = "SELECT * FROM facturas";
+            ResultSet resultSet = st.executeQuery(sql);
+            
+            while(resultSet.next()){
+			
+            	numeroDeFactura = resultSet.getString("numero");
+			
+            };
+
+            st.close();
+            resultSet.close();
+        }catch(Exception e ){ }
+
+		return numeroDeFactura;
+	}
+	//Registro de la factura en el sistema
+	public void registrarFactura(String fechaIngreso, String horaIngreso, String codigoHangar, String idAvion){
+		String numerofac = numeroDeFactura();
+		int numeroFactura = Integer.parseInt(numerofac)+1;
+		String numeroFacturaRegistrar = ""+numeroFactura;
+		try{  
+			java.sql.Statement st = conexion.createStatement();
+			String sql = "INSERT INTO  facturas(numero,fechaingreso,horaingreso,codigohangar,idavion)";
+			sql += "VALUES ('"+numeroFacturaRegistrar+"','"+fechaIngreso+"','"+horaIngreso+"','"+codigoHangar+"','"+idAvion+"')";
+			
+			
+			//Una vez registramos la factura se procede a cambiarle el estado del hangar 
+			String sql2 = "update hangares set estado = 'Ocupado' where codigo = "+"'"+codigoHangar+"'";
+			
+			st.execute(sql);
+			st.execute(sql2);
+
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setContentText("Hangar reservado con exito");
+			alert.show();
+		}catch(Exception e ){
+
+		}
+	}
+
     
     
 }
