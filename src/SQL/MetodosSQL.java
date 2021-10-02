@@ -29,6 +29,7 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 import modelo.Aerolinea;
 import modelo.Avion;
+import modelo.Factura;
 import modelo.Hangar;
 import modelo.Piloto;
 import modelo.Solicitud;
@@ -1793,12 +1794,12 @@ public class MetodosSQL {
 		String numeroFacturaRegistrar = ""+numeroFactura;
 		try{  
 			java.sql.Statement st = conexion.createStatement();
-			String sql = "INSERT INTO  facturas(numero,fechaingreso,horaingreso,codigohangar,idavion)";
-			sql += "VALUES ('"+numeroFacturaRegistrar+"','"+fechaIngreso+"','"+horaIngreso+"','"+codigoHangar+"','"+idAvion+"')";
+			String sql = "INSERT INTO  facturas(numero,fechaingreso,horaingreso,codigohangar,idavion,estado)";
+			sql += "VALUES ('"+numeroFacturaRegistrar+"','"+fechaIngreso+"','"+horaIngreso+"','"+codigoHangar+"','"+idAvion+"','"+"Pendiente"+"')";
 			
 			
 			//Una vez registramos la factura se procede a cambiarle el estado del hangar 
-			String sql2 = "update hangares set estado = 'Ocupado' where codigo = "+"'"+codigoHangar+"'";
+			String sql2 = "update hangares set estado = 'Ocupado'"+", idavion = "+"'"+idAvion+"'"+"WHERE codigo = "+"'"+codigoHangar+"'";
 			
 			st.execute(sql);
 			st.execute(sql2);
@@ -1810,6 +1811,152 @@ public class MetodosSQL {
 
 		}
 	}
+	public void cargarFacturasPendientes(TableView<Factura> tabla_facturasPendientes) {
+		
+		try{
+			
+            java.sql.Statement st = conexion.createStatement();
+            String sql = "SELECT * FROM facturas WHERE estado = 'Pendiente'";
+            ResultSet resultSet = st.executeQuery(sql);
+            
+            while(resultSet.next()){
+			
+            	String numero =    resultSet.getString("numero");
+            	String fechaingreso = resultSet.getString("fechaingreso");
+				String horaingreso = resultSet.getString("horaingreso");
+				String idavion  = resultSet.getString("idavion");
+				String codigohangar = resultSet.getString("codigohangar");
+
+				Button btn_pagar= new Button("Pagar");
+
+				//btn_reservar.setStyle("-fx-text-fill: white");
+				btn_pagar.setStyle("-fx-background-color: #2CB61B");
+				
+				
+                Factura factura = new Factura(numero,idavion,fechaingreso,horaingreso,codigohangar,btn_pagar);
+				tabla_facturasPendientes.getItems().add(factura);
+			
+            };
+            st.close();
+            resultSet.close();
+        }catch(Exception e ){       } 
+
+	}
+	public void cargarReporteFacturas(TableView<Factura> tabla_facturas) {
+		
+		try{
+			
+            java.sql.Statement st = conexion.createStatement();
+            String sql = "SELECT * FROM facturas";
+            ResultSet resultSet = st.executeQuery(sql);
+            
+            while(resultSet.next()){
+			
+            	String numero =    resultSet.getString("numero");
+            	String fechaingreso = resultSet.getString("fechaingreso");
+				String horaingreso = resultSet.getString("horaingreso");
+				String idavion  = resultSet.getString("idavion");
+				String codigohangar = resultSet.getString("codigohangar");
+				String estado = resultSet.getString("estado");
+				
+				
+                Factura factura = new Factura(numero,idavion,fechaingreso,horaingreso,codigohangar,estado);
+				tabla_facturas.getItems().add(factura);
+			
+            };
+            st.close();
+            resultSet.close();
+        }catch(Exception e ){       } 
+
+	}
+	public Factura retornamosFacturas(String numeroFactura) {
+		Factura factura = null;
+		try{
+			
+            java.sql.Statement st = conexion.createStatement();
+            String sql = "SELECT * FROM facturas WHERE numero = "+"'"+numeroFactura+"'";
+            ResultSet resultSet = st.executeQuery(sql);
+            
+            while(resultSet.next()){
+			
+            	String numero =    resultSet.getString("numero");
+            	String fechaingreso = resultSet.getString("fechaingreso");
+				String horaingreso = resultSet.getString("horaingreso");
+				String idavion  = resultSet.getString("idavion");
+				String codigohangar = resultSet.getString("codigohangar");
+				String estado = resultSet.getString("estado");
+				String horasalida = resultSet.getString("horasalida");
+				String fechasalida = resultSet.getString("fechasalida");
+				String valor = resultSet.getString("valor");
+				
+				
+                factura = new Factura(numero,idavion,fechaingreso,horaingreso,codigohangar,estado,horasalida,fechasalida,valor);
+			
+			
+            };
+            st.close();
+            resultSet.close();
+        }catch(Exception e ){       } 
+		return factura;
+	}
+	public void pagarFactura(String numero,String  fechaSalida, String horaSalida, String valor){
+	    Factura factura = retornamosFacturas(numero);
+
+		try{ 
+			java.sql.Statement st = conexion.createStatement();
+		    String sql = "update facturas set horasalida ="+"'"+horaSalida+"'"+", estado = 'Pagada'"+","+"fechasalida = "+"'"+fechaSalida+"'"+","+"valor = "+"'"+valor+"'"+" where numero = "+"'"+numero+"'";
+			st.execute(sql);
+			desocuparHangar(factura.getCodigoHangar());
+			//new Notificacion("Hangar reservado con exito", 1);
+			
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setContentText("Factura pagada con exito");
+			alert.show();
+		}catch(Exception e ){
+		}	
+	}
+	public void desocuparHangar(String codigo){
+
+		try{ 
+			java.sql.Statement st = conexion.createStatement();
+		    String sql = "update hangares set estado = 'Vacio', idavion = 'Vacio'"+" where codigo = "+"'"+codigo+"'";
+			st.execute(sql);
+			//new Notificacion("Hangar reservado con exito", 1);
+			
+		}catch(Exception e ){
+		}	
+	}
+	public void cargarFacturasPagadas(TableView<Factura> tabla_facturasPagadas) {
+		
+		try{
+			
+            java.sql.Statement st = conexion.createStatement();
+            String sql = "SELECT * FROM facturas WHERE estado = 'Pagada'";
+            ResultSet resultSet = st.executeQuery(sql);
+            
+            while(resultSet.next()){
+			
+            	String numero =    resultSet.getString("numero");
+            	String fechaingreso = resultSet.getString("fechaingreso");
+				String horaingreso = resultSet.getString("horaingreso");
+				String idavion  = resultSet.getString("idavion");
+				String codigohangar = resultSet.getString("codigohangar");
+				String fechasalida = resultSet.getString("fechasalida");
+				String horaSalida = resultSet.getString("horasalida");
+				String valor = resultSet.getString("valor");
+				String estado = resultSet.getString("estado");
+				
+				
+                Factura factura = new Factura(numero,idavion,fechaingreso,horaingreso,codigohangar,estado,horaSalida,fechasalida,valor);
+				tabla_facturasPagadas.getItems().add(factura);
+			
+            };
+            st.close();
+            resultSet.close();
+        }catch(Exception e ){       } 
+
+	}
+	
 
     
     

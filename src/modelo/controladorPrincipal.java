@@ -5,8 +5,12 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.concurrent.TimeUnit;
+
 import Notificaciones.Notificacion;
 import SQL.MetodosSQL;
 import javafx.animation.TranslateTransition;
@@ -1376,6 +1380,38 @@ public class controladorPrincipal implements Initializable {
 			this.colum_reserva.setCellValueFactory(new PropertyValueFactory<>("button"));
 			metodosSQL.cargarHangaresVaciosAdministracion(tabla_HangaresVaciosParaReservar);
 
+			//RELACIONAMOS LA TABLA DE FACTURAS PENDIENTES
+			this.colum_numFactura.setCellValueFactory(new PropertyValueFactory<>("numero"));
+			this.colum_facIdAvion.setCellValueFactory(new PropertyValueFactory<>("idAvion"));
+			this.colum_facFechaIngreso.setCellValueFactory(new PropertyValueFactory<>("fechaIngreso"));
+			this.colum_facHoraIngreso.setCellValueFactory(new PropertyValueFactory<>("horaIngreso"));
+			this.colum_facCodigoHangar.setCellValueFactory(new PropertyValueFactory<>("codigoHangar"));
+			this.colum_facPagarFactura.setCellValueFactory(new PropertyValueFactory<>("button"));
+			metodosSQL.cargarFacturasPendientes(tabla_facturasPendientes);
+			
+			//RELACIONAMOS LA TABLA DE REPORTE GENERAL DE FACTURAS
+
+			this.colum_numFactura1.setCellValueFactory(new PropertyValueFactory<>("numero"));
+			this.colum_facIdAvion1.setCellValueFactory(new PropertyValueFactory<>("idAvion"));
+			this.colum_facFechaIngreso1.setCellValueFactory(new PropertyValueFactory<>("fechaIngreso"));
+			this.colum_facHoraIngreso1.setCellValueFactory(new PropertyValueFactory<>("horaIngreso"));
+			this.colum_facCodigoHangar1.setCellValueFactory(new PropertyValueFactory<>("codigoHangar"));
+			this.colum_facEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+			metodosSQL.cargarReporteFacturas(tabla_reporteDeFacturas);
+
+			//RELACIONAMOS LA TABLA DE REPORTE GENERAL DE FACTURAS PAGADAS
+
+			this.clm_numero.setCellValueFactory(new PropertyValueFactory<>("numero"));
+			this.clm_idavion.setCellValueFactory(new PropertyValueFactory<>("idAvion"));
+			this.clm_fechaEntr.setCellValueFactory(new PropertyValueFactory<>("fechaIngreso"));
+			this.clm_horaEntrda.setCellValueFactory(new PropertyValueFactory<>("horaIngreso"));
+			this.clm_codigoHan.setCellValueFactory(new PropertyValueFactory<>("codigoHangar"));
+			this.clm_fechaSalida.setCellValueFactory(new PropertyValueFactory<>("fechaSalida"));
+			this.clm_horaSalida.setCellValueFactory(new PropertyValueFactory<>("horaSalida"));
+			this.clm_valor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+			metodosSQL.cargarFacturasPagadas(tabla_facturasCanceladas);
+			
+
 			//A�ADIMOS ESCUCHADOR A LA TABLA DE HANGARES
 	    	this.tabla_Hangares.addEventFilter(MouseEvent.MOUSE_CLICKED,e ->{
 	    		int pos = tabla_Hangares.getSelectionModel().getSelectedIndex();
@@ -1394,6 +1430,21 @@ public class controladorPrincipal implements Initializable {
 					Button btnReservar =tabla_HangaresVaciosParaReservar.getItems().get(pos).getButton();
 					btnReservar.setOnAction(event -> registrarAvionEnHangar());
 					
+				}catch(IndexOutOfBoundsException ex){
+
+				}	
+			});
+
+			//ADICIONAMOS ESCUCHADPR A LA TABLA DE PAGO DE FACTURAS
+			//A�ADIMOS ESCUCHADOR A LA TABLA DE HANGARES VACIOS
+			this.tabla_facturasPendientes.addEventFilter(MouseEvent.MOUSE_CLICKED,e ->{
+				try{
+					int pos = tabla_facturasPendientes.getSelectionModel().getSelectedIndex();
+					//txt_codigoHangarReservar.setText(tabla_facturasPendientes.getItems().get(pos).getCo);
+					String numeroFactura = tabla_facturasPendientes.getItems().get(pos).getNumero();
+					Button btnReservar =tabla_facturasPendientes.getItems().get(pos).getButton();
+					btnReservar.setOnAction(event -> pagarHangar(numeroFactura));	
+
 				}catch(IndexOutOfBoundsException ex){
 
 				}	
@@ -1462,7 +1513,12 @@ public class controladorPrincipal implements Initializable {
 	    	 animarPanelprincipalAerolienas(btn_reportesMenuAerolineas,panelBtnReportes);
 	    	 animarPanelprincipalAerolienas(btn_HangaresMenuAerolineas,panelBtnHangares);
 	    	 animarPanelprincipalAerolienas(btn_pagosMenuAerolineas,panelBtnPagoSeguro);
-	    	 
+
+			 //METODOS DE ANIMACION PANEL PRINCIPAL ADMINISTRACION DE HANGARES
+			 animarPanelprincipalAerolienas(btn_RegistrarHangar,panelBtnRegistrarHangar);
+	    	 animarPanelprincipalAerolienas(btn_reservarHangar,panelbtn_reservarHangar);
+	    	 animarPanelprincipalAerolienas(btn_pagosHangar,panelbtn_pagosHangar);
+
 			 //METODOS DE ANIMACION PANEL PRINCIPAL ADMINISTRACION
 			 animarPanelprincipalAdministracion(btn_menuAdministracionHangaresAerolienas);
 			 animarPanelprincipalAdministracion(btn_menuReportesAdministracion);
@@ -2076,7 +2132,8 @@ public class controladorPrincipal implements Initializable {
 	@FXML private TableColumn colum_codigoHangar,colum_ubicacionHangar,colum_capacidadHangar,colum_estadoHangar,colum_tarifaHangar,colum_idAvionHangar,
 	colum_codigoHangar1,colum_ubicacionHangar1,colum_capacidadHangar1,colum_estadoHangar1,colum_tarifaHangar1,colum_idAvionHangar1,colum_reserva;
 	@FXML Text label_CodigoHangar,label_idAvionHangar,label_aerolineaHangar,label_fechaIngresoHangar,label_horaIngresoHangar,label_tarifaHangar;
-
+	@FXML Button btn_RegistrarHangar,btn_reservarHangar,btn_pagosHangar,btn_reservar,btn_reporteHangares;
+	@FXML Pane panelBtnRegistrarHangar,panelbtn_reservarHangar,panelbtn_pagosHangar;
 
 	@FXML void registrarHangar(ActionEvent event){
 		
@@ -2110,6 +2167,7 @@ public class controladorPrincipal implements Initializable {
 	@FXML void mostrarMenuDeReservaDeHangar(ActionEvent e){
 		this.panel_ReservaHangar.setVisible(true);
 		this.panel_menuPrinicipalHangares.setVisible(false);
+		animarBotonesPanelPagos(btn_reporteHangares,btn_reservar,btn_reservar);
 	}
 	@FXML void adicionarNuevoHangarDesdeReportes(ActionEvent event){
 		this.panelFormularioRegistroHangar.setVisible(true);
@@ -2170,6 +2228,7 @@ public class controladorPrincipal implements Initializable {
 
 		this.tabla_Hangares.getItems().clear();
 		this.metodosSQL.cargarHangaresAdministracion(tabla_Hangares);
+		animarBotonesPanelPagos(btn_reporteHangares,btn_reservar,btn_reservar);
 	}
 	@FXML void mostrarPanelReservarHangar(ActionEvent event){
 		this.panel_reportesHangar.setVisible(false);
@@ -2186,6 +2245,8 @@ public class controladorPrincipal implements Initializable {
 			alert.setContentText("En el momento todos los hangares estan ocupados");
 			alert.show();
 		}
+
+		animarBotonesPanelPagos(btn_reservar,btn_reporteHangares,btn_reporteHangares);
 	}
 	public void registrarAvionEnHangar(){
 		this.formularioRegistroAvionEnHangar.setVisible(true);
@@ -2252,6 +2313,126 @@ public class controladorPrincipal implements Initializable {
 		this.facturaReservaHangar.setVisible(false);
 		this.formularioRegistroAvionEnHangar.setVisible(true);
 	}
+	//PANEL DE Pagos
+	//Referencias de la vista oagos
+	@FXML AnchorPane panel_PagosHangar,panel_pagar,panel_reporteFacturas,panel_reporteFinanciero,facturaDeCobro;
+	@FXML TableView<Factura> tabla_facturasPendientes,tabla_reporteDeFacturas,tabla_facturasCanceladas;
+	@FXML TableColumn colum_numFactura,colum_facIdAvion,colum_facFechaIngreso,colum_facHoraIngreso,colum_facCodigoHangar,colum_facPagarFactura;
+	@FXML TableColumn colum_numFactura1,colum_facIdAvion1,colum_facFechaIngreso1,colum_facHoraIngreso1,colum_facCodigoHangar1,colum_facPagarFactura1,colum_facEstado;
+	@FXML Text label_CodigoHangar1, label_idAvionHangar1,label_aerolineaHangar1,label_fechaIngresoHangar1,label_fechaSalida,label_horaIngresoHangar1
+	,label_horaSalida,label_tarifaHangar1,label_valorPagar,label_HorasFacturadas;
+	@FXML TableColumn clm_numero,clm_codigoHan,clm_idavion,clm_fechaEntr,clm_horaEntrda,clm_fechaSalida,clm_horaSalida,clm_valor;
+	@FXML Button btn_pagarHangar,btn_reporteFacturas,btn_reporteFinanciero;
+
+	@FXML void mostrarPanelPagos(ActionEvent event){
+		this.panel_PagosHangar.setVisible(true);
+		this.panel_menuPrinicipalHangares.setVisible(false);
+		
+		//Refrescamos tablas de esta vista---------------------------------
+		this.tabla_facturasPendientes.getItems().clear();
+		this.metodosSQL.cargarFacturasPendientes(tabla_facturasPendientes);
+		this.tabla_reporteDeFacturas.getItems().clear();
+		this.metodosSQL.cargarReporteFacturas(tabla_reporteDeFacturas);
+		//------------------------------------------------------------------
+		//Incluimos animacion de botones
+		animarBotonesPanelPagos(btn_reporteFacturas,btn_pagarHangar,btn_reporteFinanciero);
+	}
+	@FXML void salirDePanelPagos(ActionEvent event){
+		this.panel_PagosHangar.setVisible(false);
+		this.panel_menuPrinicipalHangares.setVisible(true);
+	}
+	@FXML void mostrarVistaPagarHangar(ActionEvent event){
+		this.panel_pagar.setVisible(true);
+		this.panel_reporteFacturas.setVisible(false);
+		this.panel_reporteFinanciero.setVisible(false);
+
+		this.tabla_facturasPendientes.getItems().clear();
+		this.metodosSQL.cargarFacturasPendientes(tabla_facturasPendientes);
+		animarBotonesPanelPagos(btn_pagarHangar,btn_reporteFacturas,btn_reporteFinanciero);
+	}
+	@FXML void mostrarReporteFacturas(ActionEvent event){
+		this.panel_reporteFacturas.setVisible(true);
+		this.panel_pagar.setVisible(false);
+		this.panel_reporteFinanciero.setVisible(false);
+
+		this.tabla_reporteDeFacturas.getItems().clear();
+		this.metodosSQL.cargarReporteFacturas(tabla_reporteDeFacturas);
+
+		animarBotonesPanelPagos(btn_reporteFacturas,btn_pagarHangar,btn_reporteFinanciero);
+	}
+	@FXML void mostrarReporteFinanciero(ActionEvent event){
+		this.panel_reporteFinanciero.setVisible(true);
+		this.panel_reporteFacturas.setVisible(false);
+		this.panel_pagar.setVisible(false);
+
+		this.tabla_facturasCanceladas.getItems().clear();
+		this.metodosSQL.cargarFacturasPagadas(tabla_facturasCanceladas);
+
+		animarBotonesPanelPagos(btn_reporteFinanciero,btn_reporteFacturas,btn_pagarHangar);
+	}
+	//CREAMOS EL METODO DE PAGO DE HANGAr
+	static String numeroDeFacturaAPagar = "";
+	public void pagarHangar(String  numerofactura){
+		this.numeroDeFacturaAPagar = numerofactura;
+		Factura factura = this.metodosSQL.retornamosFacturas(numerofactura);
+		Hangar hangar = this.metodosSQL.retornarHangar(factura.getCodigoHangar());
+		Avion avion = this.metodosSQL.retornarInformacionAvion(factura.getIdAvion());
+		if(factura != null){
+			System.out.println("Se va a pagar la factura: "+factura.getNumero());
+			//Hacemos el calculo de costo de la facturaReservaHangar------------------------------
+			LocalDateTime local = LocalDateTime.now();
+			Calendar fechaActual = Calendar.getInstance();
+			Calendar fechaDeReserva = Calendar.getInstance();
+
+			int dia = Integer.parseInt(factura.getFechaIngreso().substring(0,2));
+			int mes = Integer.parseInt(factura.getFechaIngreso().substring(3,4))-1;
+			int ano = Integer.parseInt(factura.getFechaIngreso().substring(5,9));
+			int hora = Integer.parseInt(factura.getHoraIngreso().substring(0,2));
+			int min =  Integer.parseInt(factura.getHoraIngreso().substring(5));
+			fechaDeReserva.set(ano,mes,dia,hora, min);
+			long diferencia = Math.abs(fechaActual.getTimeInMillis() - fechaDeReserva.getTimeInMillis());
+			long horas = TimeUnit.MILLISECONDS.toHours(diferencia);
+			long valorPagar = horas * Long.parseLong(hangar.getTarifa());
+		
+			//------------------------------------------------------------------------------------
+			//Cargamos toda la informacion en la factura de cobro
+			this.label_CodigoHangar1.setText(factura.getCodigoHangar());
+			this.label_idAvionHangar1.setText(factura.getIdAvion());
+			this.label_aerolineaHangar1.setText(this.metodosSQL.tomarNombreDeAerolineaConId(avion.getId_aerolinea()));
+			this.label_fechaIngresoHangar1.setText(factura.fechaIngreso);
+			this.label_fechaSalida.setText(local.getDayOfMonth()+"/"+local.getMonthValue()+"/"+(local.getYear()));
+			this.label_horaIngresoHangar1.setText(factura.getHoraIngreso());
+			this.label_horaSalida.setText(local.getHour()+" : "+local.getMinute());
+			this.label_tarifaHangar1.setText(hangar.getTarifa());
+			this.label_valorPagar.setText(""+valorPagar);
+			this.label_HorasFacturadas.setText(""+horas);
+			//----------------------------------------------------------------------------------------
+			//MOSTRAMOS FACTURA
+			this.facturaDeCobro.setVisible(true);
+			this.panel_PagosHangar.setDisable(true);
+
+		}else{
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setContentText("Factura no existe");
+			alert.show();
+		}
+	}
+	@FXML void pagarFacturaHangar(ActionEvent event){
+		
+		this.metodosSQL.pagarFactura(this.numeroDeFacturaAPagar,label_fechaSalida.getText(),label_horaSalida.getText(),label_valorPagar.getText());
+
+		this.facturaDeCobro.setVisible(false);
+		this.panel_PagosHangar.setDisable(false);
+		
+		this.tabla_facturasPendientes.getItems().clear();
+		this.metodosSQL.cargarFacturasPendientes(tabla_facturasPendientes);
+	}
+	@FXML void salirFacturaHangar(ActionEvent event){
+		this.facturaDeCobro.setVisible(false);
+		this.panel_PagosHangar.setDisable(false);
+	}
+
+
 	
 
 	//----------------------------------------------------------------------
@@ -2329,6 +2510,15 @@ public class controladorPrincipal implements Initializable {
     	});
 		
     }
+	//ANIMAR PANEL PRINCIPAL ADMINISTRACION DE Hangares
+	//ANIMAMOS BOTONES VISTA DE panel_PagosHangar
+	public void animarBotonesPanelPagos(Button btn1,Button btn2, Button btn3){
+		btn1.setStyle("-fx-background-color: #2e4053");
+		btn2.setStyle("-fx-background-color: #141826");
+		btn3.setStyle("-fx-background-color: #141826");
+		
+	}
+	///--------------------------------------------------------------------
 	//PANEL PRINCIPAL ADMINISTRACION
 	public void animarPanelprincipalAdministracion(Button button){
 		button.setOnMouseEntered(e->{

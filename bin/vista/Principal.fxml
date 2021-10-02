@@ -32,7 +32,7 @@
             <Image url="@../imagenes/fondoApp.jpg" />
          </image>
       </ImageView>
-      <AnchorPane fx:id="panel_ReservaHangar" layoutY="-3.0" prefHeight="678.0" prefWidth="1188.0" style="-fx-background-color: #2e4053;">
+      <AnchorPane fx:id="panel_ReservaHangar" layoutY="-3.0" prefHeight="678.0" prefWidth="1188.0" style="-fx-background-color: #2e4053;" visible="false">
          <children>
             <AnchorPane layoutY="4.0" prefHeight="670.0" prefWidth="208.0" style="-fx-background-color: #141826;">
                <children>
@@ -46,7 +46,7 @@
                         <Font size="14.0" />
                      </font>
                   </Text>
-                  <Button fx:id="botonReportePiloto1" alignment="BASELINE_LEFT" layoutY="312.0" mnemonicParsing="false" onAction="#mostrarReporteHangares" prefHeight="46.0" prefWidth="222.0" style="-fx-background-color: #2e4053;" text="Reporte Hangares" textFill="DEEPSKYBLUE">
+                  <Button fx:id="btn_reporteHangares" alignment="BASELINE_LEFT" layoutY="256.0" mnemonicParsing="false" onAction="#mostrarReporteHangares" prefHeight="46.0" prefWidth="224.0" style="-fx-background-color: #2e4053;" text="Reporte Hangares" textFill="DEEPSKYBLUE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -58,7 +58,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button alignment="BASELINE_LEFT" layoutX="-4.0" layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#mostrarPanelReservarHangar" prefHeight="46.0" prefWidth="226.0" style="-fx-background-color: #2e4053;" text="Reservar" textFill="DEEPSKYBLUE">
+                  <Button fx:id="btn_reservar" alignment="BASELINE_LEFT" layoutX="-2.0" layoutY="312.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#mostrarPanelReservarHangar" prefHeight="46.0" prefWidth="226.0" style="-fx-background-color: #2e4053;" text="Reservar" textFill="DEEPSKYBLUE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -84,7 +84,7 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="panel_reportesHangar" layoutX="252.0" layoutY="7.0" prefHeight="664.0" prefWidth="931.0" style="-fx-background-color: #141826;" visible="false">
+            <AnchorPane fx:id="panel_reportesHangar" layoutX="250.0" layoutY="15.0" prefHeight="642.0" prefWidth="919.0" style="-fx-background-color: #141826;">
                <children>
                   <TableView fx:id="tabla_Hangares" layoutX="38.0" layoutY="38.0" prefHeight="334.0" prefWidth="862.0">
                     <columns>
@@ -167,9 +167,9 @@
                   </Button>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="panel_rformularioReservaHangar" layoutX="250.0" layoutY="7.0" prefHeight="664.0" prefWidth="931.0" style="-fx-background-color: #141826;">
+            <AnchorPane fx:id="panel_rformularioReservaHangar" layoutX="250.0" layoutY="15.0" prefHeight="642.0" prefWidth="919.0" style="-fx-background-color: #141826;" visible="false">
                <children>
-                  <TableView fx:id="tabla_HangaresVaciosParaReservar" layoutX="58.0" layoutY="24.0" prefHeight="562.0" prefWidth="814.0">
+                  <TableView fx:id="tabla_HangaresVaciosParaReservar" layoutX="58.0" layoutY="24.0" prefHeight="538.0" prefWidth="814.0">
                      <columns>
                         <TableColumn fx:id="colum_codigoHangar1" prefWidth="86.39999389648438" text="CODIGO" />
                         <TableColumn fx:id="colum_ubicacionHangar1" prefWidth="132.800048828125" text="UBICACION" />
@@ -180,7 +180,7 @@
                         <TableColumn fx:id="colum_reserva" prefWidth="124.00006103515625" />
                      </columns>
                   </TableView>
-                  <TextField fx:id="txt_codigoHangarReservar" layoutX="97.0" layoutY="601.0" promptText="Codigo" />
+                  <TextField fx:id="txt_codigoHangarReservar" layoutX="58.0" layoutY="579.0" promptText="Codigo" />
                </children>
             </AnchorPane>
          </children>
@@ -937,7 +937,7 @@
             <Rectangle fx:id="cursor_pnPrinciAdmin" arcHeight="5.0" arcWidth="7.0" fill="#2fa71c" height="74.0" layoutX="144.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" width="8.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="panelLogin" layoutX="818.0" layoutY="45.0" opacity="0.9" prefHeight="574.0" prefWidth="356.0" style="-fx-background-color: #1d2d3b; -fx-opacity: 0.9; -fx-border-color: white; -fx-border-width: 0.7; -fx-border-radius: 20; -fx-background-radius: 20;" visible="false">
+      <AnchorPane fx:id="panelLogin" layoutX="818.0" layoutY="45.0" opacity="0.9" prefHeight="574.0" prefWidth="356.0" style="-fx-background-color: #1d2d3b; -fx-opacity: 0.9; -fx-border-color: white; -fx-border-width: 0.7; -fx-border-radius: 20; -fx-background-radius: 20;">
          <children>
             <ImageView fitHeight="119.0" fitWidth="114.0" layoutX="121.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -1264,7 +1264,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="panel_welcome" layoutX="25.0" layoutY="62.0" opacity="0.9" prefHeight="514.0" prefWidth="765.0" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-border-width: 0.5; -fx-border-radius: 20; -fx-background-radius: 20;" visible="false">
+      <AnchorPane fx:id="panel_welcome" layoutX="25.0" layoutY="62.0" opacity="0.9" prefHeight="514.0" prefWidth="765.0" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-border-width: 0.5; -fx-border-radius: 20; -fx-background-radius: 20;">
          <children>
             <ImageView fitHeight="468.0" fitWidth="573.0" layoutX="180.0" layoutY="17.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -1861,9 +1861,9 @@
       </AnchorPane>
       <AnchorPane fx:id="panel_menuPrinicipalHangares" opacity="0.87" prefHeight="670.0" prefWidth="1188.0" style="-fx-background-color: #1d2d3b;" visible="false">
          <children>
-            <Pane fx:id="panelBtnRegistrarHangar" layoutX="309.0" layoutY="200.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
+            <Pane fx:id="panelBtnRegistrarHangar" layoutX="255.0" layoutY="199.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
                <children>
-                  <Button fx:id="btn_RegistrosHangar" layoutX="29.0" layoutY="23.0" mnemonicParsing="false" onAction="#mostrarFormuRegistroHangar" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 100; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
+                  <Button fx:id="btn_RegistrarHangar" layoutX="29.0" layoutY="23.0" mnemonicParsing="false" onAction="#mostrarFormuRegistroHangar" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 100; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
                      <graphic>
                         <ImageView fitHeight="68.0" fitWidth="81.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -1880,9 +1880,9 @@
                </children>
             </Pane>
             <Button layoutX="1086.0" layoutY="14.0" mnemonicParsing="false" onAction="#cerrarSesionAdminitracionHangares" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 10;" text="Cerrar sesion" textFill="WHITE" />
-            <Pane fx:id="panelBtnRegistrarHangar1" layoutX="531.0" layoutY="200.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
+            <Pane fx:id="panelbtn_reservarHangar" layoutX="477.0" layoutY="199.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
                <children>
-                  <Button fx:id="btn_RegistrosHangar1" layoutX="29.0" layoutY="23.0" mnemonicParsing="false" onAction="#mostrarMenuDeReservaDeHangar" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 100; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
+                  <Button fx:id="btn_reservarHangar" layoutX="29.0" layoutY="23.0" mnemonicParsing="false" onAction="#mostrarMenuDeReservaDeHangar" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 100; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
                      <graphic>
                         <ImageView fitHeight="60.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -1892,6 +1892,24 @@
                      </graphic>
                   </Button>
                   <Label layoutX="1.0" layoutY="154.0" text="Reservar Hangar" textFill="WHITE">
+                     <font>
+                        <Font name="Yu Gothic Light" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane fx:id="panelbtn_pagosHangar" layoutX="690.0" layoutY="199.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
+               <children>
+                  <Button fx:id="btn_pagosHangar" layoutX="29.0" layoutY="23.0" mnemonicParsing="false" onAction="#mostrarPanelPagos" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 100; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
+                     <graphic>
+                        <ImageView fitHeight="60.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_pay_60px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutX="58.0" layoutY="154.0" text="Pagos" textFill="WHITE">
                      <font>
                         <Font name="Yu Gothic Light" size="24.0" />
                      </font>
@@ -2056,5 +2074,244 @@
                </font>
             </Text>
          </children></AnchorPane>
+      <AnchorPane fx:id="panel_PagosHangar" layoutY="1.0" prefHeight="678.0" prefWidth="1188.0" style="-fx-background-color: #2e4053;" visible="false">
+         <children>
+            <AnchorPane layoutY="4.0" prefHeight="670.0" prefWidth="208.0" style="-fx-background-color: #141826;">
+               <children>
+                  <ImageView fitHeight="96.0" fitWidth="130.0" layoutX="57.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/icons8_pay_60px.png" />
+                     </image>
+                  </ImageView>
+                  <Text fill="WHITE" layoutX="72.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pagos">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="btn_reporteFacturas" alignment="BASELINE_LEFT" layoutY="250.0" mnemonicParsing="false" onAction="#mostrarReporteFacturas" prefHeight="46.0" prefWidth="224.0" style="-fx-background-color: #2e4053;" text="Reporte Facturas" textFill="DEEPSKYBLUE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_airplane_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_pagarHangar" alignment="BASELINE_LEFT" layoutX="-2.0" layoutY="312.0" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#mostrarVistaPagarHangar" prefHeight="46.0" prefWidth="226.0" style="-fx-background-color: #2e4053;" text="Pagar Hangar" textFill="DEEPSKYBLUE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_airplane_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="24.0" layoutY="598.0" mnemonicParsing="false" onAction="#salirDePanelPagos" prefHeight="46.0" prefWidth="174.0" style="-fx-background-color: null; -fx-border-color: white; -fx-border-radius: 30;" text="Salir" textFill="DEEPSKYBLUE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_delete_30px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="btn_reporteFinanciero" alignment="BASELINE_LEFT" layoutX="-2.0" layoutY="374.0" mnemonicParsing="false" onAction="#mostrarReporteFinanciero" prefHeight="46.0" prefWidth="226.0" style="-fx-background-color: #2e4053;" text="Reporte Financiero" textFill="DEEPSKYBLUE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../imagenes/icons8_airplane_80px.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="panel_reporteFacturas" layoutX="252.0" layoutY="15.0" prefHeight="642.0" prefWidth="919.0" style="-fx-background-color: #141826;">
+               <children>
+                  <TableView fx:id="tabla_reporteDeFacturas" layoutX="145.0" layoutY="25.0" prefHeight="562.0" prefWidth="698.0">
+                     <columns>
+                        <TableColumn fx:id="colum_numFactura1" prefWidth="63.2000732421875" text="N-Fact" />
+                        <TableColumn fx:id="colum_facIdAvion1" prefWidth="93.5999755859375" text="Id-Avion" />
+                        <TableColumn fx:id="colum_facFechaIngreso1" prefWidth="129.60003662109375" text="Fecha Ingreso" />
+                        <TableColumn fx:id="colum_facHoraIngreso1" prefWidth="136.0" text="Hora Ingreso" />
+                        <TableColumn fx:id="colum_facCodigoHangar1" prefWidth="141.5999755859375" text="Codigo Hangar" />
+                        <TableColumn fx:id="colum_facEstado" prefWidth="124.00006103515625" text="Estado" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="panel_pagar" layoutX="252.0" layoutY="15.0" prefHeight="642.0" prefWidth="919.0" style="-fx-background-color: #141826;" visible="false">
+               <children>
+                  <TableView fx:id="tabla_facturasPendientes" layoutX="145.0" layoutY="25.0" prefHeight="562.0" prefWidth="690.0">
+                     <columns>
+                        <TableColumn fx:id="colum_numFactura" prefWidth="63.2000732421875" text="N-Fact" />
+                        <TableColumn fx:id="colum_facIdAvion" prefWidth="93.5999755859375" text="Id-Avion" />
+                        <TableColumn fx:id="colum_facFechaIngreso" prefWidth="129.60003662109375" text="Fecha Ingreso" />
+                        <TableColumn fx:id="colum_facHoraIngreso" prefWidth="136.0" text="Hora Ingreso" />
+                        <TableColumn fx:id="colum_facCodigoHangar" prefWidth="141.5999755859375" text="Codigo Hangar" />
+                        <TableColumn fx:id="colum_facPagarFactura" prefWidth="124.00006103515625" />
+                     </columns>
+                  </TableView>
+                  <TextField fx:id="txt_codigoHangarReservar1" layoutX="112.0" layoutY="610.0" promptText="Codigo" />
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="panel_reporteFinanciero" layoutX="252.0" layoutY="15.0" prefHeight="642.0" prefWidth="919.0" style="-fx-background-color: #141826;" visible="false">
+               <children>
+                  <Text fill="#fffbfb" layoutX="20.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Facturas Canceladas">
+                     <font>
+                        <Font size="19.0" />
+                     </font>
+                  </Text>
+                  <TableView fx:id="tabla_facturasCanceladas" layoutX="10.0" layoutY="58.0" prefHeight="308.0" prefWidth="908.0">
+                    <columns>
+                      <TableColumn fx:id="clm_numero" prefWidth="58.4000244140625" text="N°" />
+                      <TableColumn fx:id="clm_codigoHan" prefWidth="120.79998779296875" text="Codigo Hangar" />
+                        <TableColumn fx:id="clm_idavion" prefWidth="134.4000244140625" text="Id-Avion" />
+                        <TableColumn fx:id="clm_fechaEntr" prefWidth="137.5999755859375" text="Fecha Entrada" />
+                        <TableColumn fx:id="clm_horaEntrda" prefWidth="92.79998779296875" text="Hora Entrada" />
+                        <TableColumn fx:id="clm_fechaSalida" prefWidth="128.0" text="Fecha Salida" />
+                        <TableColumn fx:id="clm_horaSalida" prefWidth="108.79998779296875" text="Hora Salida" />
+                        <TableColumn fx:id="clm_valor" prefWidth="128.00006103515625" text="Valor" />
+                    </columns>
+                  </TableView>
+               </children></AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="facturaDeCobro" layoutX="397.0" layoutY="55.0" prefHeight="562.0" prefWidth="356.0" style="-fx-background-color: #2e4053;" visible="false">
+         <children>
+            <ImageView fitHeight="353.0" fitWidth="334.0" layoutX="17.0" layoutY="55.0" opacity="0.09" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../imagenes/nombre.png" />
+               </image>
+            </ImageView>
+            <Text fill="WHITE" layoutX="47.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Factura de Cobro">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="52.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Codigo Hangar:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="52.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Id Avion:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="52.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Aerolinea:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="52.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha Ingreso:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="52.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tarifa por Hora:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="52.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora Ingreso:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Button layoutX="74.0" layoutY="455.0" mnemonicParsing="false" onAction="#pagarFacturaHangar" prefHeight="38.0" prefWidth="99.0" style="-fx-background-color: green;" text="Pagar" textFill="#fff8f8">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Button layoutX="185.0" layoutY="455.0" mnemonicParsing="false" onAction="#salirFacturaHangar" prefHeight="38.0" prefWidth="96.0" style="-fx-background-color: red;" text="Salir" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Text fx:id="label_CodigoHangar1" fill="#02ff02" layoutX="203.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_aerolineaHangar1" fill="#02ff02" layoutX="205.0" layoutY="166.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_fechaIngresoHangar1" fill="#02ff02" layoutX="52.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_horaIngresoHangar1" fill="#02ff02" layoutX="52.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_tarifaHangar1" fill="#02ff02" layoutX="203.0" layoutY="326.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_idAvionHangar1" fill="#02ff02" layoutX="203.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="203.0" layoutY="196.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha Salida">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_fechaSalida" fill="#02ff02" layoutX="203.0" layoutY="226.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="203.0" layoutY="266.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Hora Salida">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_horaSalida" fill="#02ff02" layoutX="203.0" layoutY="296.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="#fbff00" layoutX="52.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Valor a pagar:">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_valorPagar" fill="#02ff02" layoutX="203.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fill="WHITE" layoutX="52.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Horas facturadas">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+            <Text fx:id="label_HorasFacturadas" fill="#02ff02" layoutX="203.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="-----------------">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Text>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>
