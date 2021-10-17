@@ -2269,11 +2269,18 @@ public class controladorPrincipal implements Initializable {
 				
 				//TOMAMOS HORA ACTUAL DEL SISTEMA------------------------------
 				LocalDateTime locaDate = LocalDateTime.now();
-				int mes = locaDate.getMonthValue();
-				int ano = locaDate.getYear();
-				int dia = locaDate.getDayOfMonth();
-				int hours  = locaDate.getHour();
-				int minutes = locaDate.getMinute();
+
+				String mes = ""+locaDate.getMonthValue();
+				String ano = ""+locaDate.getYear();
+			    String dia = ""+locaDate.getDayOfMonth();
+				String hours  = ""+locaDate.getHour();
+				String minutes = ""+locaDate.getMinute();
+				//--AGREGAMOS UN CERO CUANDO EL CARACTER SOLO CONTIENE UN VALOR
+
+				if(mes.length() == 1)   mes = "0"+mes;
+				if(dia.length() == 1)   dia = "0"+dia;
+				if(hours.length() == 1) hours = "0"+hours;
+				if(minutes.length() == 1) minutes = "0"+minutes;
 				//--------------------------------------------------------------
 
 				//Setteamos los valores a la factura
@@ -2373,25 +2380,63 @@ public class controladorPrincipal implements Initializable {
 	//CREAMOS EL METODO DE PAGO DE HANGAr
 	static String numeroDeFacturaAPagar = "";
 	public void pagarHangar(String  numerofactura){
+
 		this.numeroDeFacturaAPagar = numerofactura;
 		Factura factura = this.metodosSQL.retornamosFacturas(numerofactura);
 		Hangar hangar = this.metodosSQL.retornarHangar(factura.getCodigoHangar());
 		Avion avion = this.metodosSQL.retornarInformacionAvion(factura.getIdAvion());
+
 		if(factura != null){
-			System.out.println("Se va a pagar la factura: "+factura.getNumero());
+		
 			//Hacemos el calculo de costo de la facturaReservaHangar------------------------------
+			//*******************************************************************/
 			LocalDateTime local = LocalDateTime.now();
+
+			String mes1 = ""+local.getMonthValue();
+			String ano1 = ""+local.getYear();
+			String dia1 = ""+local.getDayOfMonth();
+			String hours1  = ""+local.getHour();
+			String minutes1 = ""+local.getMinute();
+			//--AGREGAMOS UN CERO CUANDO EL CARACTER SOLO CONTIENE UN VALOR
+
+			if(mes1.length() == 1)     mes1 = "0"+mes1;
+			if(dia1.length() == 1)     dia1 = "0"+dia1;
+			if(hours1.length() == 1)   hours1 = "0"+hours1;
+			if(minutes1.length() == 1) minutes1 = "0"+minutes1;
+			//******************************************************************** */
+			//--------------------------------------------------------------
+
 			Calendar fechaActual = Calendar.getInstance();
 			Calendar fechaDeReserva = Calendar.getInstance();
 
 			int dia = Integer.parseInt(factura.getFechaIngreso().substring(0,2));
-			int mes = Integer.parseInt(factura.getFechaIngreso().substring(3,4))-1;
-			int ano = Integer.parseInt(factura.getFechaIngreso().substring(5,9));
+
+			int mes = Integer.parseInt(factura.getFechaIngreso().substring(3,5));
+
+			int ano = Integer.parseInt(factura.getFechaIngreso().substring(6,10));
+
 			int hora = Integer.parseInt(factura.getHoraIngreso().substring(0,2));
-			int min =  Integer.parseInt(factura.getHoraIngreso().substring(5));
-			fechaDeReserva.set(ano,mes,dia,hora, min);
-			long diferencia = Math.abs(fechaActual.getTimeInMillis() - fechaDeReserva.getTimeInMillis());
+);
+			int min =  Integer.parseInt(factura.getHoraIngreso().substring(5,7));
+
+
+			fechaDeReserva.set(ano,mes,dia,hora,min);
+			fechaActual.set(Integer.parseInt(ano1),Integer.parseInt(mes1),
+			Integer.parseInt(dia1),Integer.parseInt(hours1),Integer.parseInt(minutes1));
+			
+			long millfechaActual = fechaActual.getTimeInMillis();
+			long millfechaReserv = fechaDeReserva.getTimeInMillis();
+			
+			long diferencia = Math.abs(millfechaReserv-millfechaActual);
+
+			System.out.println("Fecha actual: "+fechaActual.getTimeInMillis());
+			System.out.println("Fecha de reserva: "+fechaDeReserva.getTimeInMillis());
+			System.out.println("Diferencia: "+diferencia);
+			
+			//------------------------------------------------------------------------------
 			long horas = TimeUnit.MILLISECONDS.toHours(diferencia);
+			//VALIDAMOS SI EL NUMERO DE HORAS ES 0 FACTURAMOS EL VALOR A  1 HORA
+			if(horas == 0) horas = 1;
 			long valorPagar = horas * Long.parseLong(hangar.getTarifa());
 		
 			//------------------------------------------------------------------------------------

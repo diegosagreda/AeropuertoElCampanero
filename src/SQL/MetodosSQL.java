@@ -1150,14 +1150,13 @@ public class MetodosSQL {
 		String estado = "Vacio", idavion = "Vacio";
 		
     	if(!esta) {
-			System.out.print("no esta");
     		try{
  	           
 	            java.sql.Statement st = conexion.createStatement();
 	            String sql = "INSERT INTO  hangares(codigo, ubicacion, capacidad, estado, tarifa, idavion)";
 	            sql += "VALUES ('"+codigo+"','"+ubicacion+"','"+capacidad+"','"+estado+"','"+tarifa+"','"+idavion+"')";
 	            st.execute(sql);
-	            //new Notificacion("Hangar registrado con exito", 1);
+	           //new Notificacion("Hangar registrado con exito", 1);
 				Alert alert = new Alert(AlertType.INFORMATION);
 	    		alert.setContentText("Hangar registrado con exito");
 	    		alert.show();
