@@ -512,7 +512,7 @@
             </AnchorPane>
             <AnchorPane fx:id="panelSolicitudRegistros" layoutX="166.0" layoutY="27.0" opacity="0.9" prefHeight="626.0" prefWidth="1013.0" style="-fx-background-color: #2d3740;">
                <children>
-                  <Button fx:id="btn_activar" layoutX="402.0" layoutY="318.0" mnemonicParsing="false" onAction="#activarUsuario" prefHeight="38.0" prefWidth="150.0" style="-fx-background-color: green;" text="Activar" textFill="WHITE">
+                  <Button fx:id="btn_activar" layoutX="328.0" layoutY="318.0" mnemonicParsing="false" onAction="#activarUsuario" prefHeight="38.0" prefWidth="150.0" style="-fx-background-color: green;" text="Activar" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
@@ -526,11 +526,11 @@
                         <TableColumn fx:id="colestado" prefWidth="167.199951171875" text="Estado" />
                     </columns>
                   </TableView>
-                  <Button fx:id="btn_inactivar" layoutX="516.0" layoutY="318.0" mnemonicParsing="false" onAction="#desactivarUsuario" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: blue;" text="Desactivar" textFill="WHITE" visible="false">
+                  <Button fx:id="btn_inactivar" layoutX="517.0" layoutY="318.0" mnemonicParsing="false" onAction="#desactivarUsuario" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: blue;" text="Desactivar" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
-                  <Button layoutX="650.0" layoutY="318.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: red;" text="Eliminar" textFill="WHITE" visible="false">
+                  <Button layoutX="714.0" layoutY="318.0" mnemonicParsing="false" onAction="#eliminarUsuario" prefHeight="38.0" prefWidth="155.0" style="-fx-background-color: red;" text="Eliminar" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -937,7 +937,7 @@
             <Rectangle fx:id="cursor_pnPrinciAdmin" arcHeight="5.0" arcWidth="7.0" fill="#2fa71c" height="74.0" layoutX="144.0" layoutY="37.0" stroke="BLACK" strokeType="INSIDE" width="8.0" />
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="panelLogin" layoutX="818.0" layoutY="45.0" opacity="0.9" prefHeight="574.0" prefWidth="356.0" style="-fx-background-color: #1d2d3b; -fx-opacity: 0.9; -fx-border-color: white; -fx-border-width: 0.7; -fx-border-radius: 20; -fx-background-radius: 20;">
+      <AnchorPane fx:id="panelLogin" layoutX="818.0" layoutY="45.0" opacity="0.9" prefHeight="574.0" prefWidth="356.0" style="-fx-background-color: #1d2d3b; -fx-opacity: 0.9; -fx-border-color: white; -fx-border-width: 0.7; -fx-border-radius: 20; -fx-background-radius: 20;" visible="false">
          <children>
             <ImageView fitHeight="119.0" fitWidth="114.0" layoutX="121.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -1111,9 +1111,9 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="panelPrincipalAerolineas" layoutX="-1.0" layoutY="-1.0" opacity="0.9" prefHeight="671.0" prefWidth="1194.0" style="-fx-background-color: #1d2d3b;" visible="false">
+      <AnchorPane fx:id="panelPrincipalAerolineas" layoutX="-1.0" layoutY="-1.0" opacity="0.9" prefHeight="671.0" prefWidth="1194.0" style="-fx-background-color: #1d2d3b;">
          <children>
-            <Pane fx:id="panelBtnRegistrarAvion" layoutX="721.0" layoutY="215.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
+            <Pane fx:id="panelBtnRegistrarAvion" layoutX="631.0" layoutY="213.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
                <children>
                   <Button fx:id="btn_registrarAvion" layoutX="29.0" layoutY="23.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 100; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
                      <graphic>
@@ -1130,7 +1130,7 @@
                      </font>
                   </Label>
                </children></Pane>
-            <Pane fx:id="panelBtnRegistrarPiloto" layoutX="237.0" layoutY="212.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
+            <Pane fx:id="panelBtnRegistrarPiloto" layoutX="147.0" layoutY="210.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
                <children>
                   <Button fx:id="btn_registrarPiloto" layoutX="29.0" layoutY="22.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 50; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
                      <graphic>
@@ -1148,7 +1148,7 @@
                   </Label>
                </children>
             </Pane>
-            <Pane fx:id="panelBtnVuelos" layoutX="484.0" layoutY="212.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
+            <Pane fx:id="panelBtnVuelos" layoutX="394.0" layoutY="210.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
                <children>
                   <Button fx:id="btn_vuelosMenuAerolineas" layoutX="29.0" layoutY="14.0" mnemonicParsing="false" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 100; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
                      <graphic>
@@ -1200,7 +1200,7 @@
                      </font>
                   </Label>
                </children></Pane>
-            <Pane fx:id="panelBtnReportes" layoutX="624.0" layoutY="355.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;" visible="false">
+            <Pane fx:id="panelBtnReportes" layoutX="867.0" layoutY="211.0" prefHeight="190.0" prefWidth="180.0" style="-fx-background-color: #3e5871;">
                <children>
                   <Button fx:id="btn_reportesMenuAerolineas" layoutX="29.0" layoutY="21.0" mnemonicParsing="false" onAction="#mostrarMenuReportesAerolienas" prefHeight="122.0" prefWidth="122.0" style="-fx-border-radius: 50; -fx-background-radius: 100; -fx-background-color: null; -fx-border-color: white; -fx-border-width: 2;">
                      <graphic>
@@ -1226,7 +1226,7 @@
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Button>
-            <Separator layoutX="447.0" layoutY="211.0" orientation="VERTICAL" prefHeight="190.0" prefWidth="0.0" />
+            <Separator layoutX="447.0" layoutY="211.0" orientation="VERTICAL" prefHeight="190.0" prefWidth="0.0" visible="false" />
             <Separator layoutX="721.0" layoutY="132.0" orientation="VERTICAL" prefHeight="418.0" prefWidth="0.0" visible="false" />
             <ImageView fitHeight="22.0" fitWidth="26.0" layoutX="1091.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
@@ -1264,7 +1264,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="panel_welcome" layoutX="25.0" layoutY="62.0" opacity="0.9" prefHeight="514.0" prefWidth="765.0" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-border-width: 0.5; -fx-border-radius: 20; -fx-background-radius: 20;">
+      <AnchorPane fx:id="panel_welcome" layoutX="25.0" layoutY="62.0" opacity="0.9" prefHeight="514.0" prefWidth="765.0" style="-fx-background-color: #1d2d3b; -fx-border-color: white; -fx-border-width: 0.5; -fx-border-radius: 20; -fx-background-radius: 20;" visible="false">
          <children>
             <ImageView fitHeight="468.0" fitWidth="573.0" layoutX="180.0" layoutY="17.0" opacity="0.13" pickOnBounds="true" preserveRatio="true">
                <image>

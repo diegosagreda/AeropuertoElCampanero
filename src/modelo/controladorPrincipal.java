@@ -2416,7 +2416,6 @@ public class controladorPrincipal implements Initializable {
 			int ano = Integer.parseInt(factura.getFechaIngreso().substring(6,10));
 
 			int hora = Integer.parseInt(factura.getHoraIngreso().substring(0,2));
-);
 			int min =  Integer.parseInt(factura.getHoraIngreso().substring(5,7));
 
 
@@ -2428,10 +2427,6 @@ public class controladorPrincipal implements Initializable {
 			long millfechaReserv = fechaDeReserva.getTimeInMillis();
 			
 			long diferencia = Math.abs(millfechaReserv-millfechaActual);
-
-			System.out.println("Fecha actual: "+fechaActual.getTimeInMillis());
-			System.out.println("Fecha de reserva: "+fechaDeReserva.getTimeInMillis());
-			System.out.println("Diferencia: "+diferencia);
 			
 			//------------------------------------------------------------------------------
 			long horas = TimeUnit.MILLISECONDS.toHours(diferencia);
