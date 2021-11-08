@@ -73,6 +73,8 @@ public class MetodosSQL {
 			notification.setNotificationType(NotificationType.INFORMATION);
 			notification.showAndDismiss(Duration.seconds(7));
 
+//Ultimo cambio base de datos
+
 		}
 	}
 	//------------------------------------------------------------------------------------------
